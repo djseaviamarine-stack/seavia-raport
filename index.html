@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#14304f">
+<title>Norway Project – Raport dzienny</title>
+<!--
+  DANE APLIKACJI (zadania + ekipy) są w bloku <script id="app-data"> poniżej.
+  Nowe zadanie = dopisz w "tasks" linijkę w tym samym formacie, np.:
+  {"id":"T-039","name":"Galley – nowe zadanie","deck":"Main Deck","loc":"Galley","act":"Dismantling wall panels","team":""},
+  Nowy pracownik = dopisz {"n":"Nazwisko Imię","p":"Joiner"} w odpowiedniej grupie.
+  Nazwiska i Task ID muszą być identyczne jak w Excelu (arkusze Lists i Tasks).
+-->
+<script id="app-data" type="application/json">
+{
+ "tasks": [
+  {
+   "id": "T-001",
+   "name": "Galley – pins preparation",
+   "deck": "Main Deck",
+   "loc": "Galley",
+   "act": "preparing surface for pins",
+   "team": ""
+  },
+  {
+   "id": "T-002",
+   "name": "Galley – other works",
+   "deck": "Main Deck",
+   "loc": "Galley",
+   "act": "Other (describe in Details)",
+   "team": ""
+  },
+  {
+   "id": "T-003",
+   "name": "Mess Room – wall panels",
+   "deck": "Main Deck",
+   "loc": "Mess Room",
+   "act": "Dismantling wall panels",
+   "team": ""
+  },
+  {
+   "id": "T-004",
+   "name": "B Deck office – ceiling",
+   "deck": "B Deck",
+   "loc": "Office/corridors",
+   "act": "Dismantling ceiling panels",
+   "team": ""
+  },
+  {
+   "id": "T-005",
+   "name": "Workshop – doors",
+   "deck": "Main Deck",
+   "loc": "Workshop",
+   "act": "Dismantling doors",
+   "team": ""
+  },
+  {
+   "id": "T-006",
+   "name": "Corridor – B15 insulation",
+   "deck": "Main Deck",
+   "loc": "Corridor",
+   "act": "B15 insulation - installation",
+   "team": ""
+  },
+  {
+   "id": "T-007",
+   "name": "A Deck cabins – B15 insulation",
+   "deck": "A Deck",
+   "loc": "Cabins",
+   "act": "B15 insulation - installation",
+   "team": ""
+  },
+  {
+   "id": "T-008",
+   "name": "Tween Deck staircase – doors",
+   "deck": "Tween Deck",
+   "loc": "Main Staircase",
+   "act": "Dismantling doors",
+   "team": ""
+  },
+  {
+   "id": "T-009",
+   "name": "Tween Deck staircase – wall panels",
+   "deck": "Tween Deck",
+   "loc": "Main Staircase",
+   "act": "Installing wall panels",
+   "team": ""
+  },
+  {
+   "id": "T-010",
+   "name": "Main Deck staircase – pins preparation",
+   "deck": "Main Deck",
+   "loc": "Main Staircase",
+   "act": "preparing surface for pins",
+   "team": ""
+  },
+  {
+   "id": "T-011",
+   "name": "Upper Deck cabins – curtains",
+   "deck": "Upper Deck",
+   "loc": "Cabins",
+   "act": "Dismantling curtains",
+   "team": ""
+  },
+  {
+   "id": "T-FW",
+   "name": "Firewatch",
+   "deck": "Main Deck",
+   "loc": "",
+   "act": "Firewatch",
+   "team": ""
+  },
+  {
+   "id": "T-SUP",
+   "name": "Supervision",
+   "deck": "All Areas",
+   "loc": "",
+   "act": "Supervision",
+   "team": "Management"
+  },
+  {
+   "id": "T-LOG",
+   "name": "Transport / cleaning – all areas",
+   "deck": "All Areas",
+   "loc": "",
+   "act": "Transport/Cleaning",
+   "team": ""
+  },
+  {
+   "id": "T-012",
+   "name": "Mess Room – pin welding & surface prep",
+   "deck": "Main Deck",
+   "loc": "Mess Room",
+   "act": "Pin welding & surface prep",
+   "team": ""
+  },
+  {
+   "id": "T-013",
+   "name": "Galley – sand flooring & upstands",
+   "deck": "Main Deck",
+   "loc": "Galley",
+   "act": "Sanding floor & upstands",
+   "team": ""
+  },
+  {
+   "id": "T-014",
+   "name": "Galley – deckhead insulation",
+   "deck": "Main Deck",
+   "loc": "Galley",
+   "act": "A60 insulation – installation",
+   "team": ""
+  },
+  {
+   "id": "T-015",
+   "name": "Main Staircase – wall panel removal",
+   "deck": "",
+   "loc": "Main Staircase",
+   "act": "Dismantling wall panels",
+   "team": ""
+  },
+  {
+   "id": "T-016",
+   "name": "Main Staircase – remove door",
+   "deck": "",
+   "loc": "Main Staircase",
+   "act": "Dismantling doors",
+   "team": ""
+  },
+  {
+   "id": "T-017",
+   "name": "Main Staircase – ceiling removal",
+   "deck": "",
+   "loc": "Main Staircase",
+   "act": "Dismantling ceiling panels",
+   "team": ""
+  },
+  {
+   "id": "T-018",
+   "name": "Main Staircase – pin welding & surface prep",
+   "deck": "",
+   "loc": "Main Staircase",
+   "act": "Pin welding & surface prep",
+   "team": ""
+  },
+  {
+   "id": "T-020",
+   "name": "LQ – remove wall & ceiling panels for davits bracket welding",
+   "deck": "",
+   "loc": "LQ",
+   "act": "Dismantling wall panels",
+   "team": ""
+  },
+  {
+   "id": "T-021",
+   "name": "Workshops – removal of doors",
+   "deck": "Main Deck",
+   "loc": "Workshops",
+   "act": "Dismantling doors",
+   "team": ""
+  },
+  {
+   "id": "T-022",
+   "name": "Change Room (men/women) – sand floor & upstands",
+   "deck": "Main Deck",
+   "loc": "Change Room",
+   "act": "Sanding floor & upstands",
+   "team": ""
+  },
+  {
+   "id": "T-023",
+   "name": "Laundry – sand flooring & upstands",
+   "deck": "Main Deck",
+   "loc": "Laundry",
+   "act": "Sanding floor & upstands",
+   "team": ""
+  },
+  {
+   "id": "T-024",
+   "name": "Galley – take down insulation in double bottom BT1",
+   "deck": "",
+   "loc": "Galley / double bottom BT1",
+   "act": "Insulation removal",
+   "team": ""
+  },
+  {
+   "id": "T-025",
+   "name": "Galley – take down insulation in double bottom BT4",
+   "deck": "",
+   "loc": "Galley / double bottom BT4",
+   "act": "Insulation removal",
+   "team": ""
+  },
+  {
+   "id": "T-026",
+   "name": "LQ – insulation in cabins A+B deck",
+   "deck": "",
+   "loc": "LQ cabins",
+   "act": "B15 insulation - installation",
+   "team": ""
+  },
+  {
+   "id": "T-027",
+   "name": "Main Staircase – removal of A60 doors to corridors",
+   "deck": "Upper Deck",
+   "loc": "Main Staircase",
+   "act": "Dismantling doors",
+   "team": ""
+  },
+  {
+   "id": "T-028",
+   "name": "Cabins – removal of old mattresses",
+   "deck": "",
+   "loc": "Cabins",
+   "act": "Removing mattresses",
+   "team": ""
+  },
+  {
+   "id": "T-029",
+   "name": "Davits – removal of panels & insulation (hot work in main staircase)",
+   "deck": "",
+   "loc": "Main Staircase",
+   "act": "Dismantling wall panels",
+   "team": ""
+  },
+  {
+   "id": "T-030",
+   "name": "Galley – coaming welding",
+   "deck": "Main Deck",
+   "loc": "Galley",
+   "act": "Other (describe in Details)",
+   "team": ""
+  },
+  {
+   "id": "T-031",
+   "name": "Galley – install plinth for furniture",
+   "deck": "Main Deck",
+   "loc": "Galley",
+   "act": "Installing furniture",
+   "team": ""
+  },
+  {
+   "id": "T-032",
+   "name": "Galley – cut down pipes in tank under galley",
+   "deck": "Main Deck",
+   "loc": "Galley / tank under galley",
+   "act": "Other (describe in Details)",
+   "team": ""
+  },
+  {
+   "id": "T-033",
+   "name": "LQ – take down ceiling panels for electricians",
+   "deck": "",
+   "loc": "LQ",
+   "act": "Dismantling ceiling panels",
+   "team": ""
+  },
+  {
+   "id": "T-034",
+   "name": "Mess Room – insulation",
+   "deck": "Main Deck",
+   "loc": "Mess Room",
+   "act": "A60 insulation – installation",
+   "team": ""
+  },
+  {
+   "id": "T-035",
+   "name": "Removing Ceiling panels (Davits)",
+   "deck": "Tween Deck",
+   "loc": "Corridor/Gym",
+   "act": "Dismantling ceiling panels",
+   "team": ""
+  },
+  {
+   "id": "T-036",
+   "name": "Change Room – remove door in male change room",
+   "deck": "Main Deck",
+   "loc": "Change Room",
+   "act": "Dismantling doors",
+   "team": ""
+  },
+  {
+   "id": "T-037",
+   "name": "Galley – take down insulation",
+   "deck": "Main Deck",
+   "loc": "Galley",
+   "act": "Insulation removal",
+   "team": ""
+  },
+  {
+   "id": "T-038",
+   "name": "Removing Insulation for Davits",
+   "deck": "All Areas",
+   "loc": "Main Staircase",
+   "act": "Insulation removal",
+   "team": ""
+  }
+ ],
+ "groups": {
+  "Team 1 A": [
+   {
+    "n": "Kołakowski Sebastian",
+    "p": "Team Leader 1"
+   },
+   {
+    "n": "Bzdok Nikodem",
+    "p": "Insulation/Logistics"
+   },
+   {
+    "n": "Focht Rafał",
+    "p": "Insulation/Logistics"
+   },
+   {
+    "n": "Karczewski Martin",
+    "p": "Insulation/Logistics"
+   },
+   {
+    "n": "Kleszcz Wiesław",
+    "p": "Joiner"
+   },
+   {
+    "n": "Myszk Dominik",
+    "p": "Joiner"
+   },
+   {
+    "n": "Schmidt Stanisław",
+    "p": "Joiner"
+   },
+   {
+    "n": "Szymański Maciej",
+    "p": "Insulation/Logistics"
+   },
+   {
+    "n": "Wollgram Arkadiusz",
+    "p": "Joiner"
+   }
+  ],
+  "Team 1 B": [
+   {
+    "n": "Mosoń Piotr",
+    "p": "Team Leader 1"
+   },
+   {
+    "n": "Czapiewski Patryk",
+    "p": "Insulation/Logistics"
+   },
+   {
+    "n": "Giese Rafał",
+    "p": "Joiner"
+   },
+   {
+    "n": "Janowicz Stanisław",
+    "p": "Joiner"
+   },
+   {
+    "n": "Januszek Łukasz",
+    "p": "Joiner"
+   },
+   {
+    "n": "Kocoł Marcin",
+    "p": "Joiner"
+   },
+   {
+    "n": "Kotaś Igor",
+    "p": "Insulation/Logistics"
+   },
+   {
+    "n": "Umecki Wojciech",
+    "p": "Joiner"
+   },
+   {
+    "n": "Łączyński Krzysztof",
+    "p": "Insulation/Logistics"
+   }
+  ],
+  "Team 2 A": [
+   {
+    "n": "Kopal Tomasz",
+    "p": "Team Leader 2"
+   },
+   {
+    "n": "Bartosinski Robert",
+    "p": "Joiner"
+   },
+   {
+    "n": "Jabłoński Jakub",
+    "p": "Insulation/Logistics"
+   },
+   {
+    "n": "Jędrzejczak Kamil",
+    "p": "Insulation/Logistics"
+   },
+   {
+    "n": "Nowak Patryk",
+    "p": "Insulation/Logistics"
+   },
+   {
+    "n": "Sulkowski Seweryn",
+    "p": "Insulation/Logistics"
+   },
+   {
+    "n": "Tomaszewski Robert",
+    "p": "Joiner"
+   },
+   {
+    "n": "Wiecaszek Przemyslaw",
+    "p": "Insulation/Logistics"
+   },
+   {
+    "n": "Wojciechowski Konrad",
+    "p": "Joiner"
+   },
+   {
+    "n": "Wojciechowski Mariusz",
+    "p": "Joiner"
+   },
+   {
+    "n": "Wydurski Mateusz",
+    "p": "Joiner"
+   },
+   {
+    "n": "Ziołecki Adrian",
+    "p": "Insulation/Logistics"
+   },
+   {
+    "n": "Żurawski Arkadiusz",
+    "p": "Joiner"
+   }
+  ],
+  "Team 2 B": [
+   {
+    "n": "Jędrzejczak Tomasz",
+    "p": "Team Leader 2"
+   },
+   {
+    "n": "Bronk Paweł",
+    "p": "Joiner"
+   },
+   {
+    "n": "Grzesiak Remigiusz",
+    "p": "Insulation/Logistics"
+   },
+   {
+    "n": "Górzyński Błażej",
+    "p": "Insulation/Logistics"
+   },
+   {
+    "n": "Jahnke Kamil",
+    "p": "Insulation/Logistics"
+   },
+   {
+    "n": "Jędrzejczak Łukasz",
+    "p": "Joiner"
+   },
+   {
+    "n": "Kalisz Kacper",
+    "p": "Joiner"
+   },
+   {
+    "n": "Pikul Gabor",
+    "p": "Insulation/Logistics"
+   },
+   {
+    "n": "Sadowski Adrian",
+    "p": "Insulation/Logistics"
+   },
+   {
+    "n": "Sadowski Rafał",
+    "p": "Joiner"
+   },
+   {
+    "n": "Sinkiewicz Dawid",
+    "p": "Joiner"
+   },
+   {
+    "n": "Smoliński Piotr",
+    "p": "Joiner"
+   },
+   {
+    "n": "Właszyn Piotr",
+    "p": "Insulation/Logistics"
+   }
+  ],
+  "Team 3 A": [
+   {
+    "n": "Bryks Daniel",
+    "p": "Team Leader 3"
+   },
+   {
+    "n": "Falk Piotr",
+    "p": "Insulation/Logistics"
+   },
+   {
+    "n": "Kasprzyk Marcin",
+    "p": "Joiner"
+   },
+   {
+    "n": "Kozakiewicz Wiktor",
+    "p": "Insulation/Logistics"
+   },
+   {
+    "n": "Minkiewicz Piotr",
+    "p": "Joiner"
+   },
+   {
+    "n": "Piotrowski Wojciech",
+    "p": "Insulation/Logistics"
+   },
+   {
+    "n": "Piszczek Roman",
+    "p": "Insulation/Logistics"
+   },
+   {
+    "n": "Piwowarczyk Bartosz",
+    "p": "Joiner"
+   },
+   {
+    "n": "Piwowarczyk Piotr",
+    "p": "Joiner"
+   },
+   {
+    "n": "Schmidt Jarosław",
+    "p": "Insulation/Logistics"
+   },
+   {
+    "n": "Serafin Mirosław",
+    "p": "Joiner"
+   }
+  ],
+  "Team 3 B": [
+   {
+    "n": "Dziubek Jacek",
+    "p": "Team Leader 3"
+   },
+   {
+    "n": "Bryk Wojciech",
+    "p": "Insulation/Logistics"
+   },
+   {
+    "n": "Choroś Andrzej",
+    "p": "Joiner"
+   },
+   {
+    "n": "Dettlaff Konrad",
+    "p": "Joiner"
+   },
+   {
+    "n": "Dziubek Michał",
+    "p": "Insulation/Logistics"
+   },
+   {
+    "n": "Kozaczków Marcel",
+    "p": "Insulation/Logistics"
+   },
+   {
+    "n": "Szumański Rafał",
+    "p": "Joiner"
+   },
+   {
+    "n": "Szymkowiak Mariusz",
+    "p": "Joiner"
+   },
+   {
+    "n": "Twardowski Krzysztof",
+    "p": "Joiner"
+   },
+   {
+    "n": "Wojciechowski Tomasz",
+    "p": "Insulation/Logistics"
+   },
+   {
+    "n": "Włodarczyk Jakub",
+    "p": "Joiner"
+   }
+  ],
+  "Management": [
+   {
+    "n": "Dawid Jawniak",
+    "p": "Project Manager"
+   },
+   {
+    "n": "Konkol Jarosław",
+    "p": "Foreman"
+   },
+   {
+    "n": "Ogrodnik Przemysław",
+    "p": "Foreman"
+   },
+   {
+    "n": "Kopal Mateusz",
+    "p": "Site Administrator"
+   },
+   {
+    "n": "Kuzyk Tomasz",
+    "p": "Site Administrator"
+   }
+  ]
+ }
+}
+</script>
+<style>
+  :root{
+    --navy:#14304f; --navy-2:#1f4570; --sea:#2a7ab0; --ink:#1b2430; --muted:#6a7686;
+    --line:#dfe5ec; --bg:#f3f5f8; --card:#fff; --ok:#1f8a4c; --warn:#b5651d; --bad:#c0392b;
+    --chip:#eef3f8; --chip-on:#14304f;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.4 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}
+  header{background:var(--navy);color:#fff;padding:14px 16px calc(14px);position:sticky;top:0;z-index:5;box-shadow:0 2px 8px rgba(0,0,0,.15)}
+  header .t{font-weight:700;font-size:17px;letter-spacing:.2px}
+  header .s{font-size:12.5px;opacity:.8;margin-top:2px}
+  main{max-width:640px;margin:0 auto;padding:12px 12px 120px}
+  .card{background:var(--card);border-radius:14px;padding:14px;margin:12px 0;box-shadow:0 1px 2px rgba(20,48,79,.06),0 0 0 1px var(--line)}
+  .card h2{font-size:13px;text-transform:uppercase;letter-spacing:.8px;color:var(--muted);margin:0 0 10px;font-weight:700}
+  label{display:block;font-size:13px;color:var(--muted);margin:10px 0 5px;font-weight:600}
+  select,input,textarea{width:100%;font:inherit;font-size:16px;padding:11px 12px;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--ink);appearance:none}
+  select{background-image:linear-gradient(45deg,transparent 50%,var(--muted) 50%),linear-gradient(135deg,var(--muted) 50%,transparent 50%);background-position:calc(100% - 18px) 50%,calc(100% - 13px) 50%;background-size:5px 5px;background-repeat:no-repeat;padding-right:34px}
+  textarea{min-height:64px;resize:vertical}
+  select:focus,input:focus,textarea:focus{outline:2px solid var(--sea);outline-offset:0;border-color:transparent}
+  .row{display:flex;gap:10px}.row>*{flex:1}
+  .taskinfo{font-size:13px;color:var(--muted);margin-top:6px;min-height:18px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{border:1px solid var(--line);background:var(--chip);border-radius:999px;padding:9px 13px;font-size:15px;cursor:pointer;user-select:none;line-height:1.1}
+  .chip small{display:block;font-size:11px;color:var(--muted);margin-top:2px}
+  .chip.on{background:var(--chip-on);color:#fff;border-color:var(--chip-on)}
+  .chip.on small{color:#c8d6e6}
+  .linkbtn{background:none;border:0;color:var(--sea);font:inherit;font-size:14px;padding:6px 0;cursor:pointer;font-weight:600}
+  .quick{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+  .quick button{border:1px solid var(--line);background:#fff;border-radius:8px;padding:8px 12px;font:inherit;font-size:14px;cursor:pointer}
+  .quick button.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+  .toggle{display:flex;align-items:center;justify-content:space-between;padding:12px 0 4px;font-size:15px}
+  .switch{position:relative;width:50px;height:30px;flex:none}
+  .switch input{opacity:0;width:0;height:0}
+  .switch span{position:absolute;inset:0;background:#cfd8e2;border-radius:30px;transition:.2s}
+  .switch span:before{content:"";position:absolute;width:24px;height:24px;left:3px;top:3px;background:#fff;border-radius:50%;transition:.2s;box-shadow:0 1px 2px rgba(0,0,0,.2)}
+  .switch input:checked+span{background:var(--ok)}
+  .switch input:checked+span:before{transform:translateX(20px)}
+  .btn{display:block;width:100%;border:0;border-radius:12px;padding:14px;font:inherit;font-weight:700;font-size:16px;cursor:pointer}
+  .btn.primary{background:var(--navy);color:#fff}
+  .btn.ghost{background:#fff;color:var(--navy);box-shadow:inset 0 0 0 1.5px var(--navy)}
+  .btn:disabled{opacity:.45}
+  .err{color:var(--bad);font-size:14px;margin-top:8px;min-height:0}
+  .entry{border:1px solid var(--line);border-radius:12px;padding:11px 12px;margin-bottom:10px}
+  .entry .top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+  .entry .id{font-weight:700}
+  .entry .h{font-weight:700;white-space:nowrap}
+  .entry .meta{font-size:13px;color:var(--muted);margin-top:3px}
+  .entry .ppl{font-size:14px;margin-top:6px}
+  .entry .act{display:flex;gap:16px;margin-top:6px}
+  .entry .act button{background:none;border:0;padding:4px 0;font:inherit;font-size:14px;color:var(--sea);font-weight:600;cursor:pointer}
+  .entry .act button.del{color:var(--bad)}
+  .badge{display:inline-block;font-size:11.5px;padding:2px 7px;border-radius:6px;background:var(--chip);color:var(--navy-2);font-weight:600;margin-left:4px}
+  table.sum{width:100%;border-collapse:collapse;font-size:14px}
+  table.sum td{padding:6px 0;border-bottom:1px solid var(--line)}
+  table.sum td:last-child{text-align:right;font-weight:700}
+  .warnh{color:var(--warn)}
+  .empty{color:var(--muted);font-size:14px;text-align:center;padding:10px 0}
+  .bar{position:fixed;left:0;right:0;bottom:0;background:rgba(255,255,255,.96);backdrop-filter:blur(6px);border-top:1px solid var(--line);padding:10px 12px calc(10px + env(safe-area-inset-bottom));z-index:6}
+  .bar .in{max-width:640px;margin:0 auto;display:flex;gap:10px;align-items:center}
+  .bar .tot{font-size:13px;color:var(--muted);min-width:96px}
+  .bar .tot b{display:block;font-size:17px;color:var(--ink)}
+  .sheet{position:fixed;inset:0;background:rgba(10,20,35,.45);display:none;align-items:flex-end;justify-content:center;z-index:10}
+  .sheet.open{display:flex}
+  .sheet .box{background:#fff;width:100%;max-width:640px;border-radius:18px 18px 0 0;padding:18px 16px calc(18px + env(safe-area-inset-bottom));max-height:88vh;overflow:auto}
+  .sheet h3{margin:0 0 4px;font-size:18px}
+  .sheet p{margin:0 0 12px;color:var(--muted);font-size:14px}
+  .sheet .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+  .btn.wa{background:#1fa855;color:#fff}
+  pre.preview{background:var(--bg);border-radius:10px;padding:10px;font-size:11.5px;white-space:pre-wrap;word-break:break-word;max-height:180px;overflow:auto;margin:10px 0 0}
+  .toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:var(--ink);color:#fff;padding:10px 16px;border-radius:10px;font-size:14px;opacity:0;transition:.25s;pointer-events:none;z-index:20}
+  .toast.show{opacity:1}
+</style>
+</head>
+<body>
+<header>
+  <div class="t">Norway Project · Raport dzienny</div>
+  <div class="s">Noble Claus Bachmann · Seavia</div>
+</header>
+
+<main>
+  <section class="card">
+    <h2>1 · Kto i kiedy</h2>
+    <label for="reporter">Raportuje</label>
+    <select id="reporter"></select>
+    <div class="row">
+      <div>
+        <label for="date">Data</label>
+        <input id="date" type="date">
+      </div>
+      <div>
+        <label for="group">Moja grupa</label>
+        <select id="group"></select>
+      </div>
+    </div>
+  </section>
+
+  <section class="card" id="form">
+    <h2 id="formTitle">2 · Dodaj wpis</h2>
+    <label for="task">Zadanie</label>
+    <select id="task"></select>
+    <input id="taskCustom" placeholder="Wpisz Task ID, np. T-039" style="display:none;margin-top:8px">
+    <div class="taskinfo" id="taskInfo"></div>
+
+    <label>Pracownicy <span id="selCount" class="badge">0</span></label>
+    <div class="chips" id="people"></div>
+    <div style="display:flex;justify-content:space-between">
+      <button class="linkbtn" id="allBtn" type="button">Zaznacz wszystkich</button>
+      <button class="linkbtn" id="moreBtn" type="button">+ ludzie z innej grupy</button>
+    </div>
+    <div class="chips" id="others" style="display:none;margin-top:6px"></div>
+
+    <label for="hours">Godziny na osobę</label>
+    <input id="hours" type="number" inputmode="decimal" step="0.5" min="0.5" max="24" placeholder="np. 9.5">
+    <div class="quick" id="quickH"></div>
+
+    <div class="toggle">
+      <span>Toolbox talk (0,5 h na osobę)</span>
+      <label class="switch"><input id="toolbox" type="checkbox"><span></span></label>
+    </div>
+
+    <label for="details">Szczegóły pracy</label>
+    <textarea id="details" placeholder="np. removed panels in corridor, 2 skips of waste"></textarea>
+
+    <div class="row">
+      <div>
+        <label for="status">Status zadania</label>
+        <select id="status">
+          <option value="">bez zmian</option>
+          <option>In progress</option>
+          <option>Done</option>
+        </select>
+      </div>
+      <div>
+        <label for="pct">% wykonania</label>
+        <input id="pct" type="number" inputmode="numeric" min="0" max="100" placeholder="0–100">
+      </div>
+    </div>
+
+    <label for="notes">Uwagi / problemy</label>
+    <input id="notes" placeholder="np. waiting for permit 1h">
+
+    <div class="err" id="err"></div>
+    <div style="height:12px"></div>
+    <button class="btn primary" id="addBtn" type="button">Dodaj wpis</button>
+    <button class="btn ghost" id="cancelBtn" type="button" style="display:none;margin-top:8px">Anuluj edycję</button>
+  </section>
+
+  <section class="card">
+    <h2>3 · Dzisiejsze wpisy</h2>
+    <div id="entries"></div>
+  </section>
+
+  <section class="card" id="sumCard" style="display:none">
+    <h2>Godziny na osobę</h2>
+    <table class="sum" id="sum"></table>
+  </section>
+
+  <div style="text-align:center;margin-top:18px">
+    <button class="linkbtn" id="clearBtn" type="button" style="color:var(--bad)">Wyczyść wszystkie wpisy</button>
+  </div>
+</main>
+
+<div class="bar"><div class="in">
+  <div class="tot"><span id="totEntries">0 wpisów</span><b id="totHours">0 h</b></div>
+  <button class="btn primary" id="sendBtn" type="button" style="flex:1">Wyślij raport</button>
+</div></div>
+
+<div class="sheet" id="sheet">
+  <div class="box">
+    <h3>Wyślij raport</h3>
+    <p id="sheetInfo"></p>
+    <div class="grid">
+      <button class="btn wa" id="waBtn" type="button">WhatsApp</button>
+      <button class="btn ghost" id="shareBtn" type="button">Udostępnij…</button>
+      <button class="btn ghost" id="mailBtn" type="button">E-mail</button>
+      <button class="btn ghost" id="copyBtn" type="button">Kopiuj</button>
+    </div>
+    <button class="btn ghost" id="closeSheet" type="button">Zamknij</button>
+    <pre class="preview" id="preview"></pre>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+(function(){
+  // ---------- settings ----------
+  var RECEIVER_PHONE = "";          // np. "48600123456" – numer, na który idzie WhatsApp (puste = wybór kontaktu)
+  var RECEIVER_EMAIL = "";          // np. "dawid@firma.pl"
+  var TOOLBOX_H = 0.5;
+  var QUICK_HOURS = [9.5, 7, 5, 4.5, 4, 2.5, 1];
+
+  var DATA = JSON.parse(document.getElementById("app-data").textContent);
+  var GROUPS = DATA.groups, TASKS = DATA.tasks;
+  var LS = "seavia-norway-report-v1";
+  var $ = function(id){ return document.getElementById(id); };
+
+  var state = load() || {};
+  state.entries = state.entries || [];
+  var selected = [];          // names selected in form
+  var editIdx = -1;
+
+  function load(){ try { return JSON.parse(localStorage.getItem(LS)); } catch(e){ return null; } }
+  function save(){ try { localStorage.setItem(LS, JSON.stringify(state)); } catch(e){} }
+  function today(){ var d=new Date(); d.setMinutes(d.getMinutes()-d.getTimezoneOffset()); return d.toISOString().slice(0,10); }
+  function clean(s){ return String(s||"").replace(/[;\r\n\t]+/g," ").replace(/\s+/g," ").trim(); }
+  function fmtH(n){ return (Math.round(n*100)/100).toString().replace(".", ","); }
+  function el(tag, attrs, text){ var e=document.createElement(tag); if(attrs) for(var k in attrs) e.setAttribute(k, attrs[k]); if(text!=null) e.textContent=text; return e; }
+  function toast(msg){ var t=$("toast"); t.textContent=msg; t.classList.add("show"); clearTimeout(toast._t); toast._t=setTimeout(function(){t.classList.remove("show");},1800); }
+  function taskById(id){ for(var i=0;i<TASKS.length;i++) if(TASKS[i].id===id) return TASKS[i]; return null; }
+  function personRole(n){ for(var g in GROUPS) for(var i=0;i<GROUPS[g].length;i++) if(GROUPS[g][i].n===n) return GROUPS[g][i].p; return ""; }
+
+  // ---------- setup selects ----------
+  var leaders = [];
+  Object.keys(GROUPS).forEach(function(g){ GROUPS[g].forEach(function(p){ if(/Team Leader|Foreman|Site Administrator|Project Manager/.test(p.p)) leaders.push(p); }); });
+  var rep=$("reporter"); rep.appendChild(el("option",{value:""},"— wybierz —"));
+  leaders.forEach(function(p){ rep.appendChild(el("option",{value:p.n}, p.n+" · "+p.p)); });
+  var grp=$("group"); Object.keys(GROUPS).forEach(function(g){ grp.appendChild(el("option",{value:g},g)); });
+
+  var tsel=$("task"); tsel.appendChild(el("option",{value:""},"— wybierz zadanie —"));
+  TASKS.forEach(function(t){ tsel.appendChild(el("option",{value:t.id}, t.id+" · "+t.name)); });
+  tsel.appendChild(el("option",{value:"__other"},"Inne – wpiszę Task ID"));
+
+  rep.value = state.reporter || "";
+  $("date").value = state.date || today();
+  grp.value = state.group || guessGroup(rep.value) || Object.keys(GROUPS)[0];
+
+  function guessGroup(name){ for(var g in GROUPS) for(var i=0;i<GROUPS[g].length;i++) if(GROUPS[g][i].n===name) return g; return ""; }
+
+  rep.addEventListener("change", function(){ state.reporter=rep.value; var g=guessGroup(rep.value); if(g){ grp.value=g; state.group=g; renderPeople(); } save(); });
+  $("date").addEventListener("change", function(){ state.date=$("date").value; save(); });
+  grp.addEventListener("change", function(){ state.group=grp.value; selected=[]; renderPeople(); save(); });
+
+  tsel.addEventListener("change", function(){
+    $("taskCustom").style.display = tsel.value==="__other" ? "block" : "none";
+    renderTaskInfo();
+  });
+  function renderTaskInfo(){
+    var t=taskById(tsel.value), box=$("taskInfo");
+    if(!t){ box.textContent=""; return; }
+    box.textContent=[t.deck,t.loc,t.act].filter(Boolean).join(" · ");
+  }
+
+  // ---------- people chips ----------
+  function chip(p){
+    var c=el("div",{"class":"chip"+(selected.indexOf(p.n)>=0?" on":""),role:"button"});
+    c.appendChild(document.createTextNode(p.n));
+    c.appendChild(el("small",null,p.p));
+    c.addEventListener("click",function(){
+      var i=selected.indexOf(p.n); if(i>=0) selected.splice(i,1); else selected.push(p.n);
+      c.classList.toggle("on"); $("selCount").textContent=selected.length;
+    });
+    return c;
+  }
+  function renderPeople(){
+    var box=$("people"); box.innerHTML="";
+    (GROUPS[grp.value]||[]).forEach(function(p){ box.appendChild(chip(p)); });
+    var ob=$("others"); ob.innerHTML="";
+    Object.keys(GROUPS).forEach(function(g){
+      if(g===grp.value) return;
+      ob.appendChild(el("div",{style:"width:100%;font-size:12px;color:var(--muted);margin-top:6px;font-weight:700"},g));
+      GROUPS[g].forEach(function(p){ ob.appendChild(chip(p)); });
+    });
+    $("selCount").textContent=selected.length;
+  }
+  $("moreBtn").addEventListener("click",function(){ var o=$("others"); var show=o.style.display==="none"; o.style.display=show?"flex":"none"; this.textContent= show?"− ukryj inne grupy":"+ ludzie z innej grupy"; });
+  $("allBtn").addEventListener("click",function(){
+    var names=(GROUPS[grp.value]||[]).map(function(p){return p.n;});
+    var all=names.every(function(n){return selected.indexOf(n)>=0;});
+    if(all) selected=selected.filter(function(n){return names.indexOf(n)<0;});
+    else names.forEach(function(n){ if(selected.indexOf(n)<0) selected.push(n); });
+    renderPeople();
+  });
+
+  // ---------- quick hours ----------
+  QUICK_HOURS.forEach(function(h){
+    var b=el("button",{type:"button"},fmtH(h));
+    b.addEventListener("click",function(){ $("hours").value=h; markQuick(); });
+    $("quickH").appendChild(b);
+  });
+  function markQuick(){ var v=parseFloat(String($("hours").value).replace(",",".")); Array.prototype.forEach.call($("quickH").children,function(b){ b.classList.toggle("on", parseFloat(b.textContent.replace(",","."))===v); }); }
+  $("hours").addEventListener("input",markQuick);
+
+  // ---------- add / edit ----------
+  function resetForm(){
+    selected=[]; tsel.value=""; $("taskCustom").value=""; $("taskCustom").style.display="none";
+    $("hours").value=""; $("toolbox").checked=false; $("details").value=""; $("status").value=""; $("pct").value=""; $("notes").value="";
+    $("err").textContent=""; editIdx=-1; $("addBtn").textContent="Dodaj wpis"; $("cancelBtn").style.display="none"; $("formTitle").textContent="2 · Dodaj wpis";
+    renderTaskInfo(); renderPeople(); markQuick();
+  }
+  $("cancelBtn").addEventListener("click",resetForm);
+
+  $("addBtn").addEventListener("click",function(){
+    var err=$("err");
+    var tid = tsel.value==="__other" ? clean($("taskCustom").value).toUpperCase() : tsel.value;
+    var h = parseFloat(String($("hours").value).replace(",","."));
+    var pct = $("pct").value===""? "" : parseFloat($("pct").value);
+    if(!rep.value){ err.textContent="Wybierz, kto raportuje (krok 1)."; rep.focus(); return; }
+    if(!$("date").value){ err.textContent="Wybierz datę."; return; }
+    if(!tid){ err.textContent="Wybierz zadanie."; return; }
+    if(selected.length===0){ err.textContent="Zaznacz co najmniej jedną osobę."; return; }
+    if(!(h>0 && h<=24)){ err.textContent="Wpisz godziny (0,5–24)."; $("hours").focus(); return; }
+    if(pct!=="" && !(pct>=0 && pct<=100)){ err.textContent="% wykonania: 0–100."; return; }
+    var e = { task:tid, people:selected.slice(), hours:h, toolbox:$("toolbox").checked,
+              details:clean($("details").value), status:$("status").value, pct:pct, notes:clean($("notes").value) };
+    if(editIdx>=0){ state.entries[editIdx]=e; toast("Zapisano zmiany"); }
+    else { state.entries.push(e); toast("Dodano wpis"); }
+    save(); resetForm(); renderEntries();
+    window.scrollTo({top: document.getElementById("entries").getBoundingClientRect().top + window.scrollY - 90, behavior:"smooth"});
+  });
+
+  function editEntry(i){
+    var e=state.entries[i]; editIdx=i;
+    if(taskById(e.task)){ tsel.value=e.task; $("taskCustom").style.display="none"; }
+    else { tsel.value="__other"; $("taskCustom").style.display="block"; $("taskCustom").value=e.task; }
+    selected=e.people.slice(); $("hours").value=e.hours; $("toolbox").checked=!!e.toolbox;
+    $("details").value=e.details; $("status").value=e.status||""; $("pct").value=e.pct===""?"":e.pct; $("notes").value=e.notes||"";
+    $("addBtn").textContent="Zapisz zmiany"; $("cancelBtn").style.display="block"; $("formTitle").textContent="2 · Edytuj wpis";
+    renderTaskInfo(); renderPeople(); markQuick();
+    window.scrollTo({top: $("form").offsetTop-70, behavior:"smooth"});
+  }
+
+  // ---------- list ----------
+  function renderEntries(){
+    var box=$("entries"); box.innerHTML="";
+    if(state.entries.length===0){ box.appendChild(el("div",{"class":"empty"},"Brak wpisów. Dodaj pierwszy powyżej.")); }
+    state.entries.forEach(function(e,i){
+      var t=taskById(e.task); var d=el("div",{"class":"entry"});
+      var top=el("div",{"class":"top"});
+      var left=el("div"); left.appendChild(el("span",{"class":"id"},e.task)); left.appendChild(document.createTextNode(" "+(t?t.name:"")));
+      top.appendChild(left);
+      top.appendChild(el("div",{"class":"h"}, e.people.length+" × "+fmtH(e.hours)+" h"));
+      d.appendChild(top);
+      var meta=[]; if(e.toolbox) meta.push("toolbox"); if(e.status) meta.push(e.status); if(e.pct!=="") meta.push(e.pct+"%"); if(e.details) meta.push(e.details); if(e.notes) meta.push("Uwagi: "+e.notes);
+      if(meta.length) d.appendChild(el("div",{"class":"meta"},meta.join(" · ")));
+      d.appendChild(el("div",{"class":"ppl"},e.people.join(", ")));
+      var act=el("div",{"class":"act"});
+      var b1=el("button",{type:"button"},"Edytuj"); b1.addEventListener("click",function(){editEntry(i);});
+      var b2=el("button",{type:"button","class":"del"},"Usuń"); b2.addEventListener("click",function(){ if(confirmDel(i)){ state.entries.splice(i,1); save(); renderEntries(); } });
+      act.appendChild(b1); act.appendChild(b2); d.appendChild(act);
+      box.appendChild(d);
+    });
+    renderSummary();
+  }
+  function plWpis(n){ return n+(n===1?" wpis":(n%10>=2&&n%10<=4&&(n%100<10||n%100>=20)?" wpisy":" wpisów")); }
+  function confirmDel(i){ return window.confirm ? window.confirm("Usunąć wpis "+state.entries[i].task+"?") : true; }
+
+  function perPerson(){
+    var m={};
+    state.entries.forEach(function(e){ e.people.forEach(function(n){ m[n]=(m[n]||0)+e.hours+(e.toolbox?TOOLBOX_H:0); }); });
+    return m;
+  }
+  function renderSummary(){
+    var m=perPerson(), names=Object.keys(m).sort(), tb=$("sum"); tb.innerHTML="";
+    var total=0; names.forEach(function(n){ total+=m[n]; });
+    $("sumCard").style.display = names.length? "block":"none";
+    names.forEach(function(n){
+      var tr=el("tr"); tr.appendChild(el("td",null,n));
+      var td=el("td",null,fmtH(m[n])+" h"); if(m[n]>12) td.className="warnh"; tr.appendChild(td); tb.appendChild(tr);
+    });
+    var n=state.entries.length;
+    $("totEntries").textContent = plWpis(n);
+    $("totHours").textContent = fmtH(total)+" h · "+names.length+" os.";
+    $("sendBtn").disabled = n===0;
+  }
+
+  // ---------- report text ----------
+  function buildReport(){
+    var date=$("date").value, who=rep.value, lines=[];
+    var m=perPerson(), total=0; Object.keys(m).forEach(function(k){ total+=m[k]; });
+    lines.push("#SEAVIA-LOG;v1;"+who+";"+date);
+    lines.push("# Raport "+date+" · "+who+" · "+Object.keys(m).length+" os. · "+fmtH(total)+" h");
+    state.entries.forEach(function(e){
+      var t=taskById(e.task);
+      lines.push("# "+e.task+(t?" "+t.name:"")+": "+e.people.length+" × "+fmtH(e.hours)+" h"+(e.status?" · "+e.status:"")+(e.pct!==""?" · "+e.pct+"%":""));
+    });
+    var note=function(e){ return clean([e.notes, "[App: "+who+"]"].filter(Boolean).join(" ")); };
+    state.entries.forEach(function(e){
+      e.people.forEach(function(n){
+        lines.push([date,n,e.task,e.hours,"",clean(e.details),note(e),e.status||"",e.pct===""?"":e.pct].join(";"));
+      });
+      if(e.toolbox){
+        e.people.forEach(function(n){ lines.push([date,n,e.task,TOOLBOX_H,"Toolbox talk","",note(e),"",""].join(";")); });
+      }
+    });
+    lines.push("#END");
+    return lines.join("\n");
+  }
+
+  $("sendBtn").addEventListener("click",function(){
+    if(!rep.value){ toast("Wybierz, kto raportuje"); rep.focus(); return; }
+    var txt=buildReport(); $("preview").textContent=txt;
+    var m=perPerson(), tot=0; Object.keys(m).forEach(function(k){tot+=m[k];});
+    $("sheetInfo").textContent=$("date").value+" · "+plWpis(state.entries.length)+" · "+Object.keys(m).length+" osób · "+fmtH(tot)+" h. Wyślij całą wiadomość bez zmian.";
+    $("shareBtn").style.display = navigator.share ? "block" : "none";
+    $("sheet").classList.add("open");
+  });
+  $("closeSheet").addEventListener("click",function(){ $("sheet").classList.remove("open"); });
+  $("sheet").addEventListener("click",function(ev){ if(ev.target===$("sheet")) $("sheet").classList.remove("open"); });
+  $("waBtn").addEventListener("click",function(){
+    var url=(RECEIVER_PHONE? "https://wa.me/"+RECEIVER_PHONE : "https://wa.me/")+"?text="+encodeURIComponent(buildReport());
+    window.open(url,"_blank");
+  });
+  $("mailBtn").addEventListener("click",function(){
+    location.href="mailto:"+RECEIVER_EMAIL+"?subject="+encodeURIComponent("Daily Log "+$("date").value+" – "+rep.value)+"&body="+encodeURIComponent(buildReport());
+  });
+  $("shareBtn").addEventListener("click",function(){
+    navigator.share({title:"Daily Log "+$("date").value, text:buildReport()}).catch(function(){});
+  });
+  $("copyBtn").addEventListener("click",function(){
+    var txt=buildReport();
+    function fallback(){ var ta=el("textarea"); ta.value=txt; document.body.appendChild(ta); ta.select(); try{document.execCommand("copy"); toast("Skopiowano");}catch(e){ toast("Zaznacz tekst i skopiuj ręcznie"); } ta.remove(); }
+    if(navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(txt).then(function(){toast("Skopiowano");},fallback); else fallback();
+  });
+
+  $("clearBtn").addEventListener("click",function(){
+    if(state.entries.length===0) return;
+    if(window.confirm && !window.confirm("Usunąć wszystkie wpisy? Zrób to dopiero po wysłaniu raportu.")) return;
+    state.entries=[]; state.date=today(); $("date").value=state.date; save(); resetForm(); renderEntries();
+  });
+
+  renderPeople(); renderEntries(); markQuick();
+})();
+</script>
+</body>
+</html>
