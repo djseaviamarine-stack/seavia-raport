@@ -1,0 +1,1235 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0f2238">
+<meta name="robots" content="noindex, nofollow">
+<title>Norway Project – Panel managera</title>
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="manager.json">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Panel NP">
+<script id="app-data" type="application/json">
+{
+ "tasks": [
+  {
+   "id": "T-001",
+   "name": "Galley – preparing surface for pins & pin welding",
+   "deck": "Main Deck",
+   "loc": "Galley",
+   "act": "Pin welding & surface prep",
+   "team": "",
+   "status": "In progress",
+   "pct": "95",
+   "pl": "Kuchnia (Galley) – przygotowanie pod piny i spawanie pinów",
+   "proj": "6141"
+  },
+  {
+   "id": "T-002",
+   "name": "Galley – other works",
+   "deck": "Main Deck",
+   "loc": "Galley",
+   "act": "Other (describe in Details)",
+   "team": "",
+   "status": "In progress",
+   "pct": "",
+   "pl": "Kuchnia (Galley) – inne prace",
+   "proj": "6141"
+  },
+  {
+   "id": "T-003",
+   "name": "Workshop – doors",
+   "deck": "Main Deck",
+   "loc": "Workshop",
+   "act": "Dismantling doors",
+   "team": "",
+   "status": "In progress",
+   "pct": "80",
+   "pl": "Warsztat – drzwi",
+   "proj": "6141"
+  },
+  {
+   "id": "T-004",
+   "name": "Corridor – B15 insulation",
+   "deck": "Main Deck",
+   "loc": "Corridor",
+   "act": "B15 insulation - installation",
+   "team": "",
+   "status": "In progress",
+   "pct": "85",
+   "pl": "Korytarz – izolacja B15",
+   "proj": "6141"
+  },
+  {
+   "id": "T-005",
+   "name": "A Deck cabins – B15 insulation",
+   "deck": "A Deck",
+   "loc": "Cabins",
+   "act": "B15 insulation - installation",
+   "team": "",
+   "status": "In progress",
+   "pct": "",
+   "pl": "Kabiny A Deck – izolacja B15",
+   "proj": "6141"
+  },
+  {
+   "id": "T-006",
+   "name": "Tween Deck staircase – wall panels",
+   "deck": "Tween Deck",
+   "loc": "Main Staircase",
+   "act": "Installing wall panels",
+   "team": "",
+   "status": "In progress",
+   "pct": "",
+   "pl": "Klatka schodowa Tween Deck – panele ścienne",
+   "proj": "6141"
+  },
+  {
+   "id": "T-007",
+   "name": "Main Deck staircase – pins preparation",
+   "deck": "Main Deck",
+   "loc": "Main Staircase",
+   "act": "preparing surface for pins",
+   "team": "",
+   "status": "In progress",
+   "pct": "30",
+   "pl": "Klatka schodowa Main Deck – przygotowanie pod piny",
+   "proj": "6141"
+  },
+  {
+   "id": "T-FW",
+   "name": "Firewatch",
+   "deck": "Main Deck",
+   "loc": "",
+   "act": "Firewatch",
+   "team": "",
+   "status": "In progress",
+   "pct": "",
+   "pl": "Firewatch – dozór pożarowy",
+   "proj": "6141"
+  },
+  {
+   "id": "T-SUP",
+   "name": "Supervision",
+   "deck": "All Areas",
+   "loc": "",
+   "act": "Supervision",
+   "team": "Management",
+   "status": "In progress",
+   "pct": "",
+   "pl": "Nadzór",
+   "proj": "6013"
+  },
+  {
+   "id": "T-LOG",
+   "name": "Transport / cleaning – all areas",
+   "deck": "All Areas",
+   "loc": "",
+   "act": "Transport/Cleaning",
+   "team": "",
+   "status": "In progress",
+   "pct": "",
+   "pl": "Transport / sprzątanie – wszystkie rejony",
+   "proj": "6013"
+  },
+  {
+   "id": "T-008",
+   "name": "Mess Room – pin welding & surface prep",
+   "deck": "Main Deck",
+   "loc": "Mess Room",
+   "act": "Pin welding & surface prep",
+   "team": "",
+   "status": "Open",
+   "pct": "95",
+   "pl": "Mesa (Mess Room) – spawanie pinów i przygotowanie powierzchni",
+   "proj": "6141"
+  },
+  {
+   "id": "T-009",
+   "name": "Galley – deckhead insulation",
+   "deck": "Main Deck",
+   "loc": "Galley",
+   "act": "A60 insulation – installation",
+   "team": "",
+   "status": "Open",
+   "pct": "70",
+   "pl": "Kuchnia (Galley) – izolacja sufitu (deckhead)",
+   "proj": "6141"
+  },
+  {
+   "id": "T-010",
+   "name": "Main Staircase – wall panel removal",
+   "deck": "",
+   "loc": "Main Staircase",
+   "act": "Dismantling wall panels",
+   "team": "",
+   "status": "Open",
+   "pct": "20",
+   "pl": "Główna klatka schodowa – demontaż paneli ściennych",
+   "proj": "6141"
+  },
+  {
+   "id": "T-011",
+   "name": "Main Staircase – ceiling removal",
+   "deck": "",
+   "loc": "Main Staircase",
+   "act": "Dismantling ceiling panels",
+   "team": "",
+   "status": "Open",
+   "pct": "20",
+   "pl": "Główna klatka schodowa – demontaż sufitu",
+   "proj": "6141"
+  },
+  {
+   "id": "T-012",
+   "name": "Main Staircase – pin welding & surface prep",
+   "deck": "",
+   "loc": "Main Staircase",
+   "act": "Pin welding & surface prep",
+   "team": "",
+   "status": "Open",
+   "pct": "10",
+   "pl": "Główna klatka schodowa – spawanie pinów i przygotowanie powierzchni",
+   "proj": "6141"
+  },
+  {
+   "id": "T-013",
+   "name": "Workshops – removal of doors",
+   "deck": "Main Deck",
+   "loc": "Workshops",
+   "act": "Dismantling doors",
+   "team": "",
+   "status": "Open",
+   "pct": "60",
+   "pl": "Warsztaty – demontaż drzwi",
+   "proj": "6114"
+  },
+  {
+   "id": "T-014",
+   "name": "LQ – insulation in cabins A+B deck",
+   "deck": "",
+   "loc": "LQ cabins",
+   "act": "B15 insulation - installation",
+   "team": "",
+   "status": "Open",
+   "pct": "0",
+   "pl": "LQ – izolacja w kabinach A + B Deck",
+   "proj": "6141"
+  },
+  {
+   "id": "T-015",
+   "name": "LQ – take down ceiling panels for electricians",
+   "deck": "",
+   "loc": "LQ",
+   "act": "Dismantling ceiling panels",
+   "team": "",
+   "status": "Open",
+   "pct": "",
+   "pl": "LQ – demontaż paneli sufitowych dla elektryków",
+   "proj": "6138"
+  },
+  {
+   "id": "T-016",
+   "name": "Mess Room – insulation",
+   "deck": "Main Deck",
+   "loc": "Mess Room",
+   "act": "A60 insulation – installation",
+   "team": "",
+   "status": "Open",
+   "pct": "95",
+   "pl": "Mesa (Mess Room) – izolacja",
+   "proj": "6141"
+  },
+  {
+   "id": "T-LEA",
+   "name": "Team Leader – transport / logistics",
+   "deck": "All Areas",
+   "loc": "",
+   "act": "Other (describe in Details)",
+   "team": "",
+   "status": "In progress",
+   "pct": "",
+   "pl": "Team Leader – transport / logistyka",
+   "proj": "6013"
+  },
+  {
+   "id": "T-TRV",
+   "name": "Travel",
+   "deck": "",
+   "loc": "",
+   "act": "Travel",
+   "team": "",
+   "status": "In progress",
+   "pct": "",
+   "pl": "Podróż",
+   "proj": ""
+  },
+  {
+   "id": "T-017",
+   "name": "STOP WORK",
+   "deck": "All Areas",
+   "loc": "",
+   "act": "Other (describe in Details)",
+   "team": "",
+   "status": "In progress",
+   "pct": "",
+   "pl": "",
+   "proj": "6013"
+  },
+  {
+   "id": "T-018",
+   "name": "Main Staircase – A60 insulation (Main Deck)",
+   "deck": "Main Deck",
+   "loc": "Main Staircase",
+   "act": "A60 insulation – installation",
+   "team": "",
+   "status": "Open",
+   "pct": "",
+   "pl": "Klatka schodowa – izolacja A60 (Main Deck)",
+   "proj": "6141"
+  },
+  {
+   "id": "T-019",
+   "name": "Main Staircase – A60 insulation (Tween Deck)",
+   "deck": "Tween Deck",
+   "loc": "Main Staircase",
+   "act": "A60 insulation – installation",
+   "team": "",
+   "status": "Open",
+   "pct": "",
+   "pl": "Klatka schodowa – izolacja A60 (Tween Deck)",
+   "proj": "6141"
+  },
+  {
+   "id": "T-020",
+   "name": "Main Staircase – wall installation (Main Deck)",
+   "deck": "Main Deck",
+   "loc": "Main Staircase",
+   "act": "Installing wall panels",
+   "team": "",
+   "status": "Open",
+   "pct": "",
+   "pl": "Klatka schodowa – montaż ścian (Main Deck)",
+   "proj": "6141"
+  },
+  {
+   "id": "T-021",
+   "name": "Main Staircase – ceiling installation (Main Deck)",
+   "deck": "Main Deck",
+   "loc": "Main Staircase",
+   "act": "Installing ceiling panels",
+   "team": "",
+   "status": "Open",
+   "pct": "",
+   "pl": "Klatka schodowa – montaż sufitu (Main Deck)",
+   "proj": "6141"
+  },
+  {
+   "id": "T-022",
+   "name": "Main Staircase – ceiling installation (Tween Deck)",
+   "deck": "Tween Deck",
+   "loc": "Main Staircase",
+   "act": "Installing ceiling panels",
+   "team": "",
+   "status": "Open",
+   "pct": "",
+   "pl": "Klatka schodowa – montaż sufitu (Tween Deck)",
+   "proj": "6141"
+  },
+  {
+   "id": "T-023",
+   "name": "Cabins – ceiling installation",
+   "deck": "",
+   "loc": "Cabins",
+   "act": "Installing ceiling panels",
+   "team": "",
+   "status": "Open",
+   "pct": "",
+   "pl": "Kabiny – montaż sufitu",
+   "proj": "6141"
+  },
+  {
+   "id": "T-024",
+   "name": "Cabins – wall installation (acoustic)",
+   "deck": "",
+   "loc": "Cabins",
+   "act": "Installing wall panels",
+   "team": "",
+   "status": "Open",
+   "pct": "",
+   "pl": "Kabiny – montaż ścian (akustyka)",
+   "proj": "6140"
+  },
+  {
+   "id": "T-025",
+   "name": "General Store – pin welding & surface prep",
+   "deck": "Tween Deck",
+   "loc": "General Store",
+   "act": "Pin welding & surface prep",
+   "team": "",
+   "status": "Open",
+   "pct": "",
+   "pl": "General Store – przygotowanie pod spawanie szpilek",
+   "proj": "6141"
+  },
+  {
+   "id": "T-026",
+   "name": "General Store – A60 insulation",
+   "deck": "Tween Deck",
+   "loc": "General Store",
+   "act": "A60 insulation – installation",
+   "team": "",
+   "status": "Open",
+   "pct": "",
+   "pl": "General Store – izolacja A60",
+   "proj": "6141"
+  },
+  {
+   "id": "T-027",
+   "name": "Male Change Room – skirting",
+   "deck": "Main Deck",
+   "loc": "Change Room",
+   "act": "Installing skirting",
+   "team": "",
+   "status": "Open",
+   "pct": "",
+   "pl": "Przebieralnia męska – skirting",
+   "proj": "6138"
+  },
+  {
+   "id": "T-028",
+   "name": "Wheelhouse Deck Change Room – skirting",
+   "deck": "Wheelhouse Deck",
+   "loc": "Change Room",
+   "act": "Installing skirting",
+   "team": "",
+   "status": "Open",
+   "pct": "",
+   "pl": "Przebieralnia Wheelhouse Deck – skirting",
+   "proj": "6138"
+  },
+  {
+   "id": "T-029",
+   "name": "Laundry – heating cables",
+   "deck": "Main Deck",
+   "loc": "Laundry",
+   "act": "Heating cables installation",
+   "team": "",
+   "status": "Open",
+   "pct": "",
+   "pl": "Pralnia – kable grzewcze",
+   "proj": "6138"
+  },
+  {
+   "id": "T-030",
+   "name": "Galley – heating cables",
+   "deck": "Main Deck",
+   "loc": "Galley",
+   "act": "Heating cables installation",
+   "team": "",
+   "status": "Open",
+   "pct": "",
+   "pl": "Kuchnia (Galley) – kable grzewcze",
+   "proj": "6139"
+  },
+  {
+   "id": "T-031",
+   "name": "Change Rooms (male/female) – heating cables",
+   "deck": "Main Deck",
+   "loc": "Change Room",
+   "act": "Heating cables installation",
+   "team": "",
+   "status": "Open",
+   "pct": "",
+   "pl": "Przebieralnie M/K – kable grzewcze",
+   "proj": "6138"
+  },
+  {
+   "id": "T-032",
+   "name": "Wheelhouse Deck Change Room – heating cables",
+   "deck": "Wheelhouse Deck",
+   "loc": "Change Room",
+   "act": "Heating cables installation",
+   "team": "",
+   "status": "Open",
+   "pct": "",
+   "pl": "Przebieralnia Wheelhouse Deck – kable grzewcze",
+   "proj": "6138"
+  },
+  {
+   "id": "T-033",
+   "name": "Upper Deck – removing doors",
+   "deck": "Upper Deck",
+   "loc": "",
+   "act": "Dismantling doors",
+   "team": "",
+   "status": "Open",
+   "pct": "",
+   "pl": "Upper Deck – demontaż drzwi",
+   "proj": "6114"
+  },
+  {
+   "id": "T-034",
+   "name": "Insulation boxes – transport (all areas)",
+   "deck": "All Areas",
+   "loc": "",
+   "act": "Transport",
+   "team": "",
+   "status": "Open",
+   "pct": "",
+   "pl": "Transport boxów z izolacją – wszystkie strefy",
+   "proj": "6141"
+  },
+  {
+   "id": "T-035",
+   "name": "Main Deck Corridor / Bonded Store – A60 insulation",
+   "deck": "Main Deck",
+   "loc": "Corridor / Bonded Store",
+   "act": "A60 insulation – installation",
+   "team": "",
+   "status": "In progress",
+   "pct": "",
+   "pl": "Korytarz / Bonded Store – izolacja A60",
+   "proj": "6141"
+  }
+ ],
+ "groups": {
+  "Team 1 A": [
+   {
+    "n": "Kołakowski Sebastian",
+    "p": "Team Leader 1"
+   },
+   {
+    "n": "Bzdok Nikodem",
+    "p": "Insulation/Logistics"
+   },
+   {
+    "n": "Jarmul Marek",
+    "p": "Joiner"
+   },
+   {
+    "n": "Jędrzejczak Kamil",
+    "p": "Joiner"
+   },
+   {
+    "n": "Karczewski Martin",
+    "p": "Insulation/Logistics"
+   },
+   {
+    "n": "Kleszcz Wiesław",
+    "p": "Joiner"
+   },
+   {
+    "n": "Malinowski Wiktor",
+    "p": "Insulation/Logistics"
+   },
+   {
+    "n": "Modrzejewski Lukasz",
+    "p": "Joiner"
+   },
+   {
+    "n": "Mroz Lukasz",
+    "p": "Insulation/Logistics"
+   },
+   {
+    "n": "Myszk Dominik",
+    "p": "Joiner"
+   },
+   {
+    "n": "Schmidt Stanisław",
+    "p": "Joiner"
+   },
+   {
+    "n": "Szymański Maciej",
+    "p": "Insulation/Logistics"
+   },
+   {
+    "n": "Wollgram Arkadiusz",
+    "p": "Joiner"
+   },
+   {
+    "n": "Zamlynski Dariusz",
+    "p": "Joiner"
+   },
+   {
+    "n": "Ziołecki Adrian",
+    "p": "Insulation/Logistics"
+   }
+  ],
+  "Team 1 B": [
+   {
+    "n": "Mosoń Piotr",
+    "p": "Team Leader 1"
+   },
+   {
+    "n": "Czapiewski Patryk",
+    "p": "Joiner"
+   },
+   {
+    "n": "Giese Rafał",
+    "p": "Joiner"
+   },
+   {
+    "n": "Janowicz Stanisław",
+    "p": "Joiner"
+   },
+   {
+    "n": "Januszek Łukasz",
+    "p": "Joiner"
+   },
+   {
+    "n": "Kocoł Marcin",
+    "p": "Joiner"
+   },
+   {
+    "n": "Kotaś Igor",
+    "p": "Insulation/Logistics"
+   },
+   {
+    "n": "Umecki Wojciech",
+    "p": "Joiner"
+   },
+   {
+    "n": "Łączyński Krzysztof",
+    "p": "Joiner"
+   }
+  ],
+  "Team 2 A": [
+   {
+    "n": "Kopal Tomasz",
+    "p": "Team Leader 2"
+   },
+   {
+    "n": "Bartosinski Robert",
+    "p": "Joiner"
+   },
+   {
+    "n": "Jabłoński Jakub",
+    "p": "Insulation/Logistics"
+   },
+   {
+    "n": "Kozlowski Dominik",
+    "p": "Insulation/Logistics"
+   },
+   {
+    "n": "Nowak Patryk",
+    "p": "Insulation/Logistics"
+   },
+   {
+    "n": "Piszczek Roman",
+    "p": "Insulation/Logistics"
+   },
+   {
+    "n": "Sulkowski Seweryn",
+    "p": "Insulation/Logistics"
+   },
+   {
+    "n": "Talik Jarosław",
+    "p": "Joiner"
+   },
+   {
+    "n": "Tomaszewski Robert",
+    "p": "Joiner"
+   },
+   {
+    "n": "Webb Andrzej",
+    "p": "Joiner"
+   },
+   {
+    "n": "Wiecaszek Przemyslaw",
+    "p": "Insulation/Logistics"
+   },
+   {
+    "n": "Wydurski Mateusz",
+    "p": "Insulation/Logistics"
+   },
+   {
+    "n": "Żurawski Arkadiusz",
+    "p": "Joiner"
+   }
+  ],
+  "Team 2 B": [
+   {
+    "n": "Jędrzejczak Tomasz",
+    "p": "Team Leader 2"
+   },
+   {
+    "n": "Bronk Paweł",
+    "p": "Joiner"
+   },
+   {
+    "n": "Grzesiak Remigiusz",
+    "p": "Insulation/Logistics"
+   },
+   {
+    "n": "Górzyński Błażej",
+    "p": "Insulation/Logistics"
+   },
+   {
+    "n": "Jahnke Kamil",
+    "p": "Joiner"
+   },
+   {
+    "n": "Jędrzejczak Łukasz",
+    "p": "Joiner"
+   },
+   {
+    "n": "Kalisz Kacper",
+    "p": "Insulation/Logistics"
+   },
+   {
+    "n": "Pikul Gabor",
+    "p": "Insulation/Logistics"
+   },
+   {
+    "n": "Sadowski Adrian",
+    "p": "Insulation/Logistics"
+   },
+   {
+    "n": "Sadowski Rafał",
+    "p": "Joiner"
+   },
+   {
+    "n": "Sinkiewicz Dawid",
+    "p": "Joiner"
+   },
+   {
+    "n": "Smoliński Piotr",
+    "p": "Joiner"
+   },
+   {
+    "n": "Właszyn Piotr",
+    "p": "Insulation/Logistics"
+   }
+  ],
+  "Team 3 A": [
+   {
+    "n": "Bryks Daniel",
+    "p": "Team Leader 3"
+   },
+   {
+    "n": "Falk Piotr",
+    "p": "Insulation/Logistics"
+   },
+   {
+    "n": "Kasprzyk Marcin",
+    "p": "Joiner"
+   },
+   {
+    "n": "Kozakiewicz Wiktor",
+    "p": "Insulation/Logistics"
+   },
+   {
+    "n": "Kusek Dariusz",
+    "p": "Joiner"
+   },
+   {
+    "n": "Mika Kacper",
+    "p": "Insulation/Logistics"
+   },
+   {
+    "n": "Minkiewicz Piotr",
+    "p": "Joiner"
+   },
+   {
+    "n": "Piotrowski Wojciech",
+    "p": "Insulation/Logistics"
+   },
+   {
+    "n": "Piwowarczyk Bartosz",
+    "p": "Joiner"
+   },
+   {
+    "n": "Piwowarczyk Piotr",
+    "p": "Joiner"
+   },
+   {
+    "n": "Pociask Mikolaj",
+    "p": "Insulation/Logistics"
+   },
+   {
+    "n": "Schmidt Jarosław",
+    "p": "Insulation/Logistics"
+   },
+   {
+    "n": "Serafin Mirosław",
+    "p": "Joiner"
+   },
+   {
+    "n": "Wojciechowski Konrad",
+    "p": "Joiner"
+   },
+   {
+    "n": "Wojciechowski Mariusz",
+    "p": "Joiner"
+   }
+  ],
+  "Team 3 B": [
+   {
+    "n": "Dziubek Jacek",
+    "p": "Team Leader 3"
+   },
+   {
+    "n": "Bryk Wojciech",
+    "p": "Insulation/Logistics"
+   },
+   {
+    "n": "Choroś Andrzej",
+    "p": "Joiner"
+   },
+   {
+    "n": "Dettlaff Konrad",
+    "p": "Joiner"
+   },
+   {
+    "n": "Dziubek Michał",
+    "p": "Joiner"
+   },
+   {
+    "n": "Kozaczków Marcel",
+    "p": "Insulation/Logistics"
+   },
+   {
+    "n": "Szumański Rafał",
+    "p": "Joiner"
+   },
+   {
+    "n": "Szymkowiak Mariusz",
+    "p": "Joiner"
+   },
+   {
+    "n": "Twardowski Krzysztof",
+    "p": "Joiner"
+   },
+   {
+    "n": "Wojciechowski Tomasz",
+    "p": "Insulation/Logistics"
+   },
+   {
+    "n": "Włodarczyk Jakub",
+    "p": "Insulation/Logistics"
+   }
+  ],
+  "Management": [
+   {
+    "n": "Dawid Jawniak",
+    "p": "Project Manager"
+   },
+   {
+    "n": "Konkol Jarosław",
+    "p": "Foreman"
+   },
+   {
+    "n": "Kopal Mateusz",
+    "p": "Site Administrator"
+   },
+   {
+    "n": "Kuzyk Tomasz",
+    "p": "Site Administrator"
+   },
+   {
+    "n": "Ogrodnik Przemysław",
+    "p": "Foreman"
+   }
+  ]
+ }
+}
+</script>
+<style>
+  :root{--navy:#0f2238;--navy2:#1f4570;--sea:#2a7ab0;--ink:#1b2430;--muted:#6a7686;--line:#dfe5ec;--bg:#f1f4f8;--card:#fff;
+        --ok:#1f8a4c;--okbg:#e5f5ec;--warn:#b5651d;--warnbg:#fff4e5;--bad:#c0392b;--badbg:#fdecea;--chip:#eef3f8}
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}
+  header{background:var(--navy);color:#fff;padding:calc(12px + env(safe-area-inset-top)) 16px 12px;position:sticky;top:0;z-index:5}
+  header .in{max-width:1100px;margin:0 auto;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+  header .t{font-weight:700;font-size:17px}
+  header .s{font-size:12px;opacity:.75}
+  header .grow{flex:1}
+  header input,header select{width:auto;font:inherit;font-size:15px;padding:8px 10px;border-radius:9px;border:0;background:#fff;color:var(--ink)}
+  main{max-width:1100px;margin:0 auto;padding:12px 12px 60px}
+  .card{background:var(--card);border-radius:14px;padding:14px;margin:12px 0;box-shadow:0 0 0 1px var(--line)}
+  .card h2{font-size:12.5px;text-transform:uppercase;letter-spacing:.8px;color:var(--muted);margin:0 0 10px;font-weight:700;display:flex;justify-content:space-between;align-items:center;gap:8px}
+  .btn{border:0;border-radius:10px;padding:10px 14px;font:inherit;font-weight:700;cursor:pointer;font-size:14px}
+  .btn.p{background:var(--navy);color:#fff}.btn.g{background:#fff;color:var(--navy);box-shadow:inset 0 0 0 1.5px var(--navy)}
+  .btn.ok{background:var(--ok);color:#fff}.btn.bad{background:#fff;color:var(--bad);box-shadow:inset 0 0 0 1.5px var(--bad)}
+  .btn.sm{padding:6px 10px;font-size:13px}
+  .btn:disabled{opacity:.45}
+  textarea,input[type=text],select{width:100%;font:inherit;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:#fff}
+  textarea{min-height:110px;resize:vertical;font-size:13px}
+  .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+  .muted{color:var(--muted);font-size:13px}
+  .board{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+  .tile{border-radius:12px;padding:10px 12px;border:1px solid var(--line);background:#fff}
+  .tile b{display:block;font-size:15px}
+  .tile .st{font-size:12.5px;font-weight:700;margin-top:3px}
+  .tile.ok{background:var(--okbg);border-color:#b9e2c8}.tile.ok .st{color:var(--ok)}
+  .tile.new{background:#eaf3fb;border-color:#bfd8ee}.tile.new .st{color:var(--sea)}
+  .tile.fix{background:var(--badbg);border-color:#f3c2bc}.tile.fix .st{color:var(--bad)}
+  .tile.none .st{color:var(--muted)}
+  .kpis{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
+  .kpi{background:var(--chip);border-radius:12px;padding:10px 12px}
+  .kpi span{font-size:12px;color:var(--muted)}.kpi b{display:block;font-size:22px;color:var(--navy)}
+  .rep{border:1px solid var(--line);border-radius:14px;margin:12px 0;background:#fff;overflow:hidden}
+  .rep .hd{display:flex;gap:10px;align-items:flex-start;justify-content:space-between;padding:12px 14px;cursor:pointer}
+  .rep .hd .who{font-weight:700;font-size:16px}
+  .rep .hd .meta{font-size:13px;color:var(--muted)}
+  .pill{display:inline-block;font-size:12px;font-weight:700;border-radius:999px;padding:3px 9px;white-space:nowrap}
+  .pill.new{background:#eaf3fb;color:var(--sea)}.pill.ok{background:var(--okbg);color:var(--ok)}.pill.fix{background:var(--badbg);color:var(--bad)}
+  .rep .bd{border-top:1px solid var(--line);padding:12px 14px;display:none}
+  .rep.open .bd{display:block}
+  .warn{background:var(--warnbg);border:1px solid #f3c98b;border-radius:10px;padding:8px 12px;font-size:13.5px;margin-bottom:10px}
+  .warn div{margin:2px 0}
+  table{width:100%;border-collapse:collapse;font-size:14px}
+  th{text-align:left;font-size:12px;color:var(--muted);font-weight:700;padding:6px 6px;border-bottom:1px solid var(--line)}
+  td{padding:7px 6px;border-bottom:1px solid var(--line);vertical-align:top}
+  td.n{text-align:right;white-space:nowrap;font-weight:700}
+  .hi{color:var(--warn)}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media (max-width:760px){.two{grid-template-columns:1fr}}
+  .thumbs{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+  .thumbs img{width:64px;height:64px;object-fit:cover;border-radius:8px;cursor:zoom-in}
+  .note{background:var(--badbg);border-radius:10px;padding:8px 12px;font-size:13.5px;margin-top:8px}
+  .acts{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+  .empty{color:var(--muted);text-align:center;padding:14px}
+  .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--ink);color:#fff;padding:10px 16px;border-radius:10px;font-size:14px;opacity:0;transition:.25s;pointer-events:none;z-index:30}
+  .toast.show{opacity:1}
+  .lb{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;align-items:center;justify-content:center;z-index:40}
+  .lb.open{display:flex}.lb img{max-width:96vw;max-height:90vh;border-radius:8px}
+  .seg{display:inline-flex;background:var(--chip);border-radius:9px;padding:3px}
+  .seg button{border:0;background:none;font:inherit;font-size:13px;font-weight:700;padding:6px 10px;border-radius:7px;cursor:pointer;color:var(--muted)}
+  .seg button.on{background:#fff;color:var(--navy);box-shadow:0 1px 2px rgba(0,0,0,.1)}
+</style>
+</head>
+<body>
+<header><div class="in">
+  <div class="grow"><div class="t">Norway Project · Panel managera</div><div class="s">Raporty Team Leaderów · Noble Claus Bachmann</div></div>
+  <input type="date" id="day">
+  <select id="rot" title="Rotacja na miejscu"><option value="A">Rotacja A</option><option value="B">Rotacja B</option></select>
+</div></header>
+
+<main>
+  <section class="card">
+    <h2>Wklej raporty z WhatsAppa <span class="muted" style="text-transform:none;letter-spacing:0;font-weight:400">można kilka naraz</span></h2>
+    <textarea id="paste" placeholder="Skopiuj wiadomość od Team Leadera (od #SEAVIA-LOG do #END) i wklej tutaj"></textarea>
+    <div class="row" style="margin-top:8px">
+      <button class="btn p" id="addRep" type="button">Dodaj raporty</button>
+      <span class="muted" id="addInfo"></span>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2><span id="boardTitle">Status teamów</span></h2>
+    <div class="board" id="board"></div>
+  </section>
+
+  <section class="card">
+    <h2>Podsumowanie dnia</h2>
+    <div class="kpis" id="kpis"></div>
+    <div class="two" style="margin-top:12px">
+      <div><table id="byProj"></table></div>
+      <div><table id="byTeam"></table></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Raporty <span class="seg" id="view"><button data-v="task" class="on" type="button">Zadania</button><button data-v="person" type="button">Osoby</button></span></h2>
+    <div id="reports"></div>
+  </section>
+
+  <section class="card">
+    <h2>Do Excela</h2>
+    <div class="muted" style="margin-bottom:8px">Kopiuje zatwierdzone raporty z wybranego dnia w jednym bloku. Wklej w Excelu w Import!A1 i kliknij „Importuj raport”.</div>
+    <div class="row">
+      <button class="btn p" id="copyOk" type="button">Kopiuj zatwierdzone</button>
+      <button class="btn g" id="copyAll" type="button">Kopiuj wszystkie z dnia</button>
+      <span class="muted" id="copyInfo"></span>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Zdjęcia</h2>
+    <div class="muted" style="margin-bottom:8px">Zapisz zdjęcia z WhatsAppa w telefonie/komputerze i dodaj je tutaj. Pliki z nazwą typu <b>2026-11-24_T-003_1.jpg</b> przypną się same; inne przypiszesz do zadania.</div>
+    <div class="row">
+      <select id="phTask" style="max-width:420px"></select>
+      <label class="btn g" for="phIn" style="display:inline-block">Dodaj zdjęcia</label>
+      <input id="phIn" type="file" accept="image/*" multiple style="display:none">
+    </div>
+    <div id="phList" style="margin-top:10px"></div>
+  </section>
+
+  <div style="text-align:center" class="muted">Dane są zapisane tylko na tym urządzeniu. <button class="btn sm g" id="delDay" type="button">Usuń raporty z tego dnia</button></div>
+</main>
+<div class="lb" id="lb"><img id="lbImg" alt="zdjęcie"></div>
+<div class="toast" id="toast"></div>
+
+<script>
+(function(){
+  var DATA=JSON.parse(document.getElementById("app-data").textContent);
+  var GROUPS=DATA.groups, TASKS=DATA.tasks;
+  var $=function(id){return document.getElementById(id);};
+  function el(t,a,x){var e=document.createElement(t); if(a) for(var k in a) e.setAttribute(k,a[k]); if(x!=null) e.textContent=x; return e;}
+  function fmtH(n){ return (Math.round(n*100)/100).toString().replace(".",","); }
+  function toast(m){var t=$("toast"); t.textContent=m; t.classList.add("show"); clearTimeout(toast.t); toast.t=setTimeout(function(){t.classList.remove("show");},1800);}
+  function today(){var d=new Date(); d.setMinutes(d.getMinutes()-d.getTimezoneOffset()); return d.toISOString().slice(0,10);}
+  function hash(s){var h=5381; for(var i=0;i<s.length;i++) h=((h<<5)+h+s.charCodeAt(i))|0; return "r"+(h>>>0).toString(36);}
+
+  // zadania z linku od PM zapisane przez aplikację foremana (ta sama domena) albo wbudowane
+  try{ var sv=JSON.parse(localStorage.getItem("seavia-norway-tasks-v1")); if(sv&&sv.tasks&&sv.tasks.length) TASKS=sv.tasks; }catch(e){}
+  function task(id){ for(var i=0;i<TASKS.length;i++) if(TASKS[i].id===id) return TASKS[i]; return null; }
+  function tName(id){ var t=task(id); return t ? (t.pl||t.name) : ""; }
+  function tProj(id){ var t=task(id); return t ? (t.proj||"") : ""; }
+  function groupOf(n){ for(var g in GROUPS) for(var i=0;i<GROUPS[g].length;i++) if(GROUPS[g][i].n===n) return g; return ""; }
+  function isTL(n){ for(var g in GROUPS) for(var i=0;i<GROUPS[g].length;i++) if(GROUPS[g][i].n===n) return /^Team Leader/i.test(GROUPS[g][i].p); return false; }
+
+  // ---------- storage ----------
+  var LS="seavia-manager-v1", st;
+  try{ st=JSON.parse(localStorage.getItem(LS))||{}; }catch(e){ st={}; }
+  st.reports=st.reports||{}; st.rot=st.rot||"A"; st.view=st.view||"task";
+  function save(){ try{ localStorage.setItem(LS,JSON.stringify(st)); }catch(e){ toast("Brak miejsca w pamięci"); } }
+
+  var DB=null;
+  function dbOpen(){ return new Promise(function(res){ try{ var r=indexedDB.open("seavia-manager-photos",1); r.onupgradeneeded=function(){ r.result.createObjectStore("p"); }; r.onsuccess=function(){ DB=r.result; res(); }; r.onerror=function(){res();}; }catch(e){res();} }); }
+  function dbPut(id,b){ return new Promise(function(res){ if(!DB) return res(); var tx=DB.transaction("p","readwrite"); tx.objectStore("p").put(b,id); tx.oncomplete=res; tx.onerror=res; }); }
+  function dbGet(id){ return new Promise(function(res){ if(!DB) return res(null); var r=DB.transaction("p").objectStore("p").get(id); r.onsuccess=function(){res(r.result||null);}; r.onerror=function(){res(null);}; }); }
+  function dbDel(id){ if(DB) try{ DB.transaction("p","readwrite").objectStore("p").delete(id); }catch(e){} }
+  var urls={};
+  function src(id){ return urls[id] ? Promise.resolve(urls[id]) : dbGet(id).then(function(b){ if(!b) return ""; urls[id]=URL.createObjectURL(b); return urls[id]; }); }
+
+  // ---------- parsing ----------
+  function parseBlock(txt){
+    var lines=txt.split(/\r?\n/).map(function(l){return l.trim();}).filter(Boolean);
+    var head=null, rows=[];
+    lines.forEach(function(l){
+      if(/^#SEAVIA-LOG/.test(l)){ var f=l.split(";"); head={who:f[2]||"",date:f[3]||""}; return; }
+      if(l.charAt(0)==="#") return;
+      var f=l.split(";"); if(f.length<4) return;
+      var h=parseFloat(String(f[3]).replace(",",".")); if(!(h>0)) return;
+      rows.push({date:f[0],emp:f[1],task:(f[2]||"").toUpperCase(),h:h,act:f[4]||"",det:f[5]||"",notes:f[6]||"",status:f[7]||"",pct:f[8]||"",proj:f[9]||""});
+    });
+    if(!rows.length) return null;
+    var who=head&&head.who || "", date=head&&head.date || rows[0].date;
+    return {who:who,date:date,rows:rows};
+  }
+  $("addRep").addEventListener("click",function(){
+    var txt=$("paste").value; if(!txt.trim()) return;
+    var blocks=txt.split(/(?=#SEAVIA-LOG)/).filter(function(b){ return b.trim(); });
+    var added=0, dup=0, bad=0, lastDate="";
+    blocks.forEach(function(b){
+      var r=parseBlock(b); if(!r){ bad++; return; }
+      var id=hash(r.date+"|"+r.who+"|"+r.rows.map(function(x){return [x.emp,x.task,x.h,x.act].join(",");}).join("|"));
+      if(st.reports[id]){ dup++; return; }
+      st.reports[id]={id:id,who:r.who,date:r.date,group:groupOf(r.who),rows:r.rows,status:"new",comment:"",at:new Date().toISOString()};
+      added++; lastDate=r.date;
+    });
+    save(); $("paste").value="";
+    $("addInfo").textContent="Dodano: "+added+(dup?" · już były: "+dup:"")+(bad?" · nierozpoznane: "+bad:"");
+    if(lastDate){ $("day").value=lastDate; }
+    render();
+  });
+
+  // ---------- helpers per report ----------
+  function perPerson(rep){ var m={}; rep.rows.forEach(function(r){ m[r.emp]=(m[r.emp]||0)+r.h; }); return m; }
+  function total(rep){ return rep.rows.reduce(function(s,r){return s+r.h;},0); }
+  function projOf(r){ return r.proj || tProj(r.task) || "–"; }
+  function warnings(rep, allDay){
+    var w=[], m=perPerson(rep);
+    var members=(GROUPS[rep.group]||[]).map(function(p){return p.n;});
+    var miss=members.filter(function(n){ return !m[n]; });
+    if(miss.length) w.push("Brak godzin: "+miss.join(", "));
+    var vals={}; Object.keys(m).forEach(function(n){ var k=fmtH(m[n]); (vals[k]=vals[k]||[]).push(n); });
+    var ks=Object.keys(vals).sort(function(a,b){return vals[b].length-vals[a].length;});
+    if(ks.length>1) w.push("Różne godziny – większość "+ks[0]+" h, inni: "+ks.slice(1).map(function(k){return vals[k].join(", ")+" "+k+" h";}).join("; "));
+    Object.keys(m).forEach(function(n){ if(m[n]>12) w.push(n+": "+fmtH(m[n])+" h (ponad 12 h)"); });
+    // ta sama osoba w innym raporcie tego dnia
+    allDay.forEach(function(o){ if(o.id===rep.id) return; Object.keys(perPerson(o)).forEach(function(n){ if(m[n]) w.push(n+" jest też w raporcie: "+o.who); }); });
+    var unknown=rep.rows.filter(function(r){ return !task(r.task); }).map(function(r){return r.task;});
+    if(unknown.length) w.push("Nieznane Task ID: "+Array.from(new Set(unknown)).join(", "));
+    return w;
+  }
+  function dayReports(){ var d=$("day").value; return Object.keys(st.reports).map(function(k){return st.reports[k];}).filter(function(r){return r.date===d;}).sort(function(a,b){return a.group<b.group?-1:1;}); }
+
+  // ---------- render ----------
+  function render(){
+    var reps=dayReports();
+    // board
+    var b=$("board"); b.innerHTML="";
+    var groups=Object.keys(GROUPS).filter(function(g){ return g==="Management" ? false : / (A|B)$/.test(g) ? g.slice(-1)===st.rot : true; });
+    $("boardTitle").textContent="Status teamów · rotacja "+st.rot;
+    groups.forEach(function(g){
+      var rs=reps.filter(function(r){return r.group===g;});
+      var cls="none", txt="✗ brak raportu";
+      if(rs.length){ var s=rs.some(function(r){return r.status==="fix";})?"fix":rs.every(function(r){return r.status==="ok";})?"ok":"new";
+        cls=s; txt= s==="ok"?"✓ zatwierdzony":s==="fix"?"✗ do poprawy":"● nowy – do sprawdzenia"; }
+      var t=el("div",{"class":"tile "+cls}); t.appendChild(el("b",null,g));
+      t.appendChild(el("div",{"class":"st"},txt));
+      if(rs.length){ var m={}; rs.forEach(function(r){ var pp=perPerson(r); Object.keys(pp).forEach(function(n){m[n]=1;}); });
+        t.appendChild(el("div",{"class":"muted"},Object.keys(m).length+" os. · "+fmtH(rs.reduce(function(s,r){return s+total(r);},0))+" h")); }
+      b.appendChild(t);
+    });
+    var other=reps.filter(function(r){ return groups.indexOf(r.group)<0; });
+    other.forEach(function(r){ var t=el("div",{"class":"tile "+r.status}); t.appendChild(el("b",null,r.group||r.who)); t.appendChild(el("div",{"class":"st"},r.status==="ok"?"✓ zatwierdzony":r.status==="fix"?"✗ do poprawy":"● nowy")); b.appendChild(t); });
+
+    // kpis
+    var people={}, hrs=0, tb=0, proj={}, team={};
+    reps.forEach(function(r){ r.rows.forEach(function(x){ people[x.emp]=1; hrs+=x.h; if(/toolbox/i.test(x.act)) tb+=x.h;
+      var p=projOf(x); proj[p]=(proj[p]||0)+x.h; }); var g=r.group||r.who; team[g]=(team[g]||0)+total(r); });
+    var k=$("kpis"); k.innerHTML="";
+    [["Raporty",reps.length],["Zatwierdzone",reps.filter(function(r){return r.status==="ok";}).length+" / "+reps.length],["Osoby",Object.keys(people).length],["Roboczogodziny",fmtH(hrs)],["Toolbox h",fmtH(tb)]]
+      .forEach(function(a){ var d=el("div",{"class":"kpi"}); d.appendChild(el("span",null,a[0])); d.appendChild(el("b",null,String(a[1]))); k.appendChild(d); });
+    tableKV($("byProj"),"Projekt",proj); tableKV($("byTeam"),"Team",team);
+
+    // reports
+    var box=$("reports"); box.innerHTML="";
+    if(!reps.length) box.appendChild(el("div",{"class":"empty"},"Brak raportów z tego dnia. Wklej raport z WhatsAppa powyżej."));
+    reps.forEach(function(r){ box.appendChild(repCard(r,reps)); });
+
+    // photo task select
+    var ps=$("phTask"), cur=ps.value; ps.innerHTML=""; ps.appendChild(el("option",{value:""},"Przypisz do zadania… (lub z nazwy pliku)"));
+    var used={}; reps.forEach(function(r){ r.rows.forEach(function(x){ used[x.task]=1; }); });
+    Object.keys(used).sort().forEach(function(id){ ps.appendChild(el("option",{value:id},id+" · "+tName(id))); });
+    ps.value=cur;
+    renderPhotos();
+  }
+  function tableKV(t,label,obj){
+    t.innerHTML=""; var tr=el("tr"); tr.appendChild(el("th",null,label)); tr.appendChild(el("th",{style:"text-align:right"},"Godziny")); t.appendChild(tr);
+    Object.keys(obj).sort(function(a,b){return obj[b]-obj[a];}).forEach(function(k){ var r=el("tr"); r.appendChild(el("td",null,k)); r.appendChild(el("td",{"class":"n"},fmtH(obj[k])+" h")); t.appendChild(r); });
+  }
+  function repCard(r,all){
+    var c=el("div",{"class":"rep"+(openId[r.id]?" open":"")});
+    var hd=el("div",{"class":"hd"}), l=el("div");
+    l.appendChild(el("div",{"class":"who"},(r.group||"?")+" · "+r.who));
+    var pp=perPerson(r);
+    l.appendChild(el("div",{"class":"meta"},Object.keys(pp).length+" os. · "+fmtH(total(r))+" h · "+Array.from(new Set(r.rows.map(function(x){return x.task;}))).length+" zadań"));
+    hd.appendChild(l);
+    var w=warnings(r,all);
+    var right=el("div",{style:"text-align:right"});
+    right.appendChild(el("span",{"class":"pill "+r.status},r.status==="ok"?"✓ zatwierdzony":r.status==="fix"?"✗ do poprawy":"nowy"));
+    if(w.length) right.appendChild(el("div",{"class":"muted",style:"color:var(--warn);margin-top:4px"},"⚠ "+w.length+" uwag"));
+    hd.appendChild(right);
+    hd.addEventListener("click",function(){ openId[r.id]=!openId[r.id]; c.classList.toggle("open"); });
+    c.appendChild(hd);
+
+    var bd=el("div",{"class":"bd"});
+    if(w.length){ var wb=el("div",{"class":"warn"}); w.forEach(function(x){ wb.appendChild(el("div",null,"⚠ "+x)); }); bd.appendChild(wb); }
+    bd.appendChild(st.view==="person" ? personTable(r) : taskTable(r));
+    if(r.comment) bd.appendChild(el("div",{"class":"note"},"Uwaga do Team Leadera: "+r.comment));
+    var a=el("div",{"class":"acts"});
+    var ok=el("button",{"class":"btn ok",type:"button"},"✓ Zatwierdź");
+    ok.addEventListener("click",function(){ r.status="ok"; save(); render(); toast("Zatwierdzono"); });
+    var fx=el("button",{"class":"btn bad",type:"button"},"✗ Do poprawy");
+    fx.addEventListener("click",function(){ var m=prompt("Co trzeba poprawić? (pójdzie do Team Leadera)", r.comment||""); if(m===null) return; r.status="fix"; r.comment=m; save(); openId[r.id]=true; render(); sendFix(r); });
+    var wa=el("button",{"class":"btn g",type:"button"},"Napisz do TL");
+    wa.addEventListener("click",function(){ sendFix(r); });
+    var del=el("button",{"class":"btn sm g",type:"button",style:"margin-left:auto"},"Usuń raport");
+    del.addEventListener("click",function(){ if(confirm("Usunąć raport "+r.who+"? (np. gdy przyszła poprawiona wersja)")){ delete st.reports[r.id]; save(); render(); } });
+    a.appendChild(ok); a.appendChild(fx); a.appendChild(wa); a.appendChild(del);
+    bd.appendChild(a);
+    c.appendChild(bd);
+    return c;
+  }
+  var openId={};
+  function taskTable(r){
+    var by={}, order=[];
+    r.rows.forEach(function(x){ var k=x.task+(/toolbox/i.test(x.act)?" TB":""); if(!by[k]){ by[k]={task:x.task,tb:/toolbox/i.test(x.act),rows:[]}; order.push(k);} by[k].rows.push(x); });
+    var t=el("table"), h=el("tr"); ["Zadanie","Projekt","Osoby","Godz."].forEach(function(s,i){ h.appendChild(el("th",i===3?{style:"text-align:right"}:null,s)); }); t.appendChild(h);
+    order.forEach(function(k){
+      var g=by[k], tr=el("tr"), td=el("td");
+      td.appendChild(el("b",null,g.task+" ")); td.appendChild(document.createTextNode(g.tb?"Toolbox talk":tName(g.task)));
+      var x0=g.rows[0];
+      var extra=[x0.status, x0.pct!==""?x0.pct+"%":"", x0.det, x0.notes].filter(Boolean).join(" · ");
+      if(extra) td.appendChild(el("div",{"class":"muted"},extra));
+      if(!g.tb) photoThumbs(r.date,g.task,td);
+      tr.appendChild(td); tr.appendChild(el("td",null,projOf(x0)));
+      tr.appendChild(el("td",null,g.rows.map(function(x){return x.emp+(g.rows.some(function(y){return y.h!==x.h;})?" ("+fmtH(x.h)+")":"");}).join(", ")));
+      tr.appendChild(el("td",{"class":"n"},g.rows.length+" × "+fmtH(g.rows[0].h)+(g.rows.some(function(y){return y.h!==g.rows[0].h;})?"*":"")+" h"));
+      t.appendChild(tr);
+    });
+    return t;
+  }
+  function personTable(r){
+    var m={}; r.rows.forEach(function(x){ (m[x.emp]=m[x.emp]||[]).push(x); });
+    var t=el("table"), h=el("tr"); ["Osoba","Zadania","Suma"].forEach(function(s,i){ h.appendChild(el("th",i===2?{style:"text-align:right"}:null,s)); }); t.appendChild(h);
+    Object.keys(m).sort().forEach(function(n){
+      var rows=m[n], sum=rows.reduce(function(s,x){return s+x.h;},0), tr=el("tr");
+      tr.appendChild(el("td",null,n+(isTL(n)?" (TL)":"")));
+      tr.appendChild(el("td",null,rows.map(function(x){ return x.task+(/toolbox/i.test(x.act)?" toolbox":"")+" "+fmtH(x.h)+" h"; }).join(" · ")));
+      tr.appendChild(el("td",{"class":"n"+(sum>12?" hi":"")},fmtH(sum)+" h")); t.appendChild(tr);
+    });
+    return t;
+  }
+  function sendFix(r){
+    var txt="Raport "+r.date+" ("+(r.group||r.who)+"): "+(r.status==="fix"?"do poprawy – ":"")+(r.comment||"");
+    if(navigator.share) navigator.share({text:txt}).catch(function(){}); else window.open("https://wa.me/?text="+encodeURIComponent(txt),"_blank");
+  }
+
+  // ---------- excel ----------
+  function exportText(onlyOk){
+    var reps=dayReports().filter(function(r){ return !onlyOk || r.status==="ok"; });
+    var out=[]; reps.forEach(function(r){
+      out.push("#SEAVIA-LOG;v1;"+r.who+";"+r.date);
+      r.rows.forEach(function(x){ out.push([x.date,x.emp,x.task,x.h,x.act,x.det,x.notes,x.status,x.pct,x.proj].join(";")); });
+      out.push("#END");
+    });
+    return {txt:out.join("\n"), n:reps.length, rows:reps.reduce(function(s,r){return s+r.rows.length;},0)};
+  }
+  function copy(onlyOk){
+    var e=exportText(onlyOk);
+    if(!e.n){ toast(onlyOk?"Brak zatwierdzonych raportów":"Brak raportów"); return; }
+    var done=function(){ $("copyInfo").textContent="Skopiowano "+e.n+" raport(y), "+e.rows+" wierszy. Wklej w Import!A1."; toast("Skopiowano"); };
+    var fb=function(){ var ta=el("textarea"); ta.value=e.txt; document.body.appendChild(ta); ta.select(); try{document.execCommand("copy"); done();}catch(x){toast("Nie udało się skopiować");} ta.remove(); };
+    if(navigator.clipboard&&navigator.clipboard.writeText) navigator.clipboard.writeText(e.txt).then(done,fb); else fb();
+  }
+  $("copyOk").addEventListener("click",function(){copy(true);});
+  $("copyAll").addEventListener("click",function(){copy(false);});
+
+  // ---------- photos ----------
+  st.photos=st.photos||[];   // {id,date,task,name}
+  function compress(f){ return new Promise(function(res){ var u=URL.createObjectURL(f), i=new Image(); i.onload=function(){ var M=1600,k=Math.min(1,M/Math.max(i.naturalWidth,i.naturalHeight)), c=document.createElement("canvas"); c.width=Math.round(i.naturalWidth*k); c.height=Math.round(i.naturalHeight*k); c.getContext("2d").drawImage(i,0,0,c.width,c.height); URL.revokeObjectURL(u); c.toBlob(function(b){res(b||f);},"image/jpeg",0.8); }; i.onerror=function(){URL.revokeObjectURL(u);res(f);}; i.src=u; }); }
+  $("phIn").addEventListener("change",function(){
+    var files=Array.prototype.slice.call(this.files||[]); this.value=""; if(!files.length) return;
+    var sel=$("phTask").value, day=$("day").value, ok=0, skip=0;
+    files.reduce(function(p,f){ return p.then(function(){
+      var m=f.name.match(/(\d{4}-\d{2}-\d{2})_([A-Za-z]+-[A-Za-z0-9]+)_/);
+      var d=m?m[1]:day, t=m?m[2].toUpperCase():sel;
+      if(!t){ skip++; return; }
+      return compress(f).then(function(b){ var id="m"+Date.now().toString(36)+Math.random().toString(36).slice(2,6); st.photos.push({id:id,date:d,task:t,name:f.name}); ok++; return dbPut(id,b); });
+    }); }, Promise.resolve()).then(function(){ save(); render(); toast("Dodano zdjęć: "+ok+(skip?" · bez zadania: "+skip+" (wybierz zadanie i dodaj ponownie)":"")); });
+  });
+  function photoThumbs(date,taskId,parent){
+    var ph=st.photos.filter(function(p){return p.date===date && p.task===taskId;}); if(!ph.length) return;
+    var th=el("div",{"class":"thumbs"});
+    ph.forEach(function(p){ var im=el("img",{alt:p.name,title:p.name}); src(p.id).then(function(u){im.src=u;}); im.addEventListener("click",function(ev){ ev.stopPropagation(); $("lbImg").src=im.src; $("lb").classList.add("open"); }); th.appendChild(im); });
+    parent.appendChild(th);
+  }
+  $("lb").addEventListener("click",function(){ $("lb").classList.remove("open"); });
+  function renderPhotos(){
+    var day=$("day").value, ph=st.photos.filter(function(p){return p.date===day;}), box=$("phList"); box.innerHTML="";
+    if(!ph.length){ box.appendChild(el("div",{"class":"muted"},"Brak zdjęć z tego dnia.")); return; }
+    var by={}; ph.forEach(function(p){ (by[p.task]=by[p.task]||[]).push(p); });
+    Object.keys(by).sort().forEach(function(t){
+      var d=el("div",{style:"margin:8px 0"}); d.appendChild(el("b",null,t+" ")); d.appendChild(document.createTextNode(tName(t)+" · "+by[t].length+" zdj."));
+      photoThumbs(day,t,d); box.appendChild(d);
+    });
+  }
+
+  // ---------- controls ----------
+  $("day").value=st.day||today();
+  $("day").addEventListener("change",function(){ st.day=$("day").value; save(); render(); });
+  $("rot").value=st.rot; $("rot").addEventListener("change",function(){ st.rot=$("rot").value; save(); render(); });
+  Array.prototype.forEach.call($("view").children,function(b){ b.classList.toggle("on",b.getAttribute("data-v")===st.view);
+    b.addEventListener("click",function(){ st.view=b.getAttribute("data-v"); save(); Array.prototype.forEach.call($("view").children,function(x){x.classList.toggle("on",x===b);}); render(); }); });
+  $("delDay").addEventListener("click",function(){
+    var reps=dayReports(); if(!reps.length) return;
+    if(!confirm("Usunąć wszystkie raporty i zdjęcia z dnia "+$("day").value+"?")) return;
+    reps.forEach(function(r){ delete st.reports[r.id]; });
+    st.photos=st.photos.filter(function(p){ if(p.date===$("day").value){ dbDel(p.id); return false; } return true; });
+    save(); render();
+  });
+  if("serviceWorker" in navigator && (location.protocol==="https:"||location.hostname==="localhost")) navigator.serviceWorker.register("sw.js",{updateViaCache:"none"}).catch(function(){});
+  dbOpen().then(render);
+})();
+</script>
+</body>
+</html>

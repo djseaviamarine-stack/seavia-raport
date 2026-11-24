@@ -1,6 +1,6 @@
 // Service worker: aplikacja działa bez internetu, a gdy jest sieć – pobiera najnowszą wersję.
-const CACHE = "np-raport-v12";
-const FILES = ["./", "./index.html", "./manifest.json", "./icon-192.png", "./icon-512.png", "./icon-maskable-512.png", "./apple-touch-icon.png"];
+const CACHE = "np-raport-v13";
+const FILES = ["./", "./index.html", "./manager.html", "./manifest.json", "./manager.json", "./icon-192.png", "./icon-512.png", "./icon-maskable-512.png", "./apple-touch-icon.png"];
 self.addEventListener("install", e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll(FILES)).then(() => self.skipWaiting())); });
 self.addEventListener("activate", e => {
   e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k !== CACHE).map(k => caches.delete(k)))).then(() => self.clients.claim()));
