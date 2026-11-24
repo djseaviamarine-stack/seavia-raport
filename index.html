@@ -1111,7 +1111,7 @@
   var TOOLBOX_H = 0.5;
   var QUICK_HOURS = [9.5, 7, 5, 4.5, 4, 2.5, 1];
 
-  var APP_VERSION = "24.11.2026 14:15";
+  var APP_VERSION = "24.11.2026 14:20";
   var DATA = JSON.parse(document.getElementById("app-data").textContent);
   var GROUPS = DATA.groups, TASKS = DATA.tasks;
   var PLAN_DATE = "";
@@ -1296,9 +1296,15 @@
   function hoursSoFar(n){
     var h=0; state.entries.forEach(function(e,i){ if(i!==editIdx && e.people.indexOf(n)>=0) h+=e.hours; }); return h;
   }
+  // ekipa do wyboru – bez Team Leadera, gdy jest dodawany automatycznie
+  function crew(){
+    var all=GROUPS[grp.value]||[];
+    if(!tla.checked) return all;
+    return all.filter(function(p){ return !/^Team Leader/i.test(p.p) || state.entries.some(function(e){ return e.people.indexOf(p.n)>=0; }); });
+  }
   function renderPeople(){
     var box=$("people"); box.innerHTML="";
-    (GROUPS[grp.value]||[]).forEach(function(p){ box.appendChild(chip(p)); });
+    crew().forEach(function(p){ box.appendChild(chip(p)); });
     var ob=$("others"); ob.innerHTML="";
     Object.keys(GROUPS).forEach(function(g){
       if(g===grp.value) return;
@@ -1309,7 +1315,7 @@
   }
   $("moreBtn").addEventListener("click",function(){ var o=$("others"); var show=o.style.display==="none"; o.style.display=show?"flex":"none"; this.textContent= show?"− ukryj inne grupy":"+ ludzie z innej grupy"; });
   $("allBtn").addEventListener("click",function(){
-    var names=(GROUPS[grp.value]||[]).map(function(p){return p.n;});
+    var names=crew().map(function(p){return p.n;});
     var all=names.every(function(n){return selected.indexOf(n)>=0;});
     if(all) selected=selected.filter(function(n){return names.indexOf(n)<0;});
     else names.forEach(function(n){ if(selected.indexOf(n)<0) selected.push(n); });
