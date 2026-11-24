@@ -1013,6 +1013,8 @@
   </section>
 
   <div style="text-align:center;margin-top:18px">
+    <div id="ver" style="font-size:12px;color:var(--muted);margin-bottom:6px"></div>
+    <button class="linkbtn" id="updBtn" type="button">Sprawdź aktualizację</button><br>
     <button class="linkbtn" id="clearBtn" type="button" style="color:var(--bad)">Wyczyść wszystkie wpisy</button>
   </div>
 </main>
@@ -1052,6 +1054,7 @@
   var TOOLBOX_H = 0.5;
   var QUICK_HOURS = [9.5, 7, 5, 4.5, 4, 2.5, 1];
 
+  var APP_VERSION = "24.11.2026 13:15";
   var DATA = JSON.parse(document.getElementById("app-data").textContent);
   var GROUPS = DATA.groups, TASKS = DATA.tasks;
   var PLAN_DATE = "";
@@ -1443,6 +1446,21 @@
     state.entries=[]; state.date=today(); $("date").value=state.date; save(); resetForm(); renderEntries();
   });
 
+  // ---------- wersja / aktualizacja ----------
+  (function(){
+    var n=0; Object.keys(GROUPS).forEach(function(g){ n+=GROUPS[g].length; });
+    $("ver").textContent="Wersja "+APP_VERSION+" · "+n+" osób w składach";
+    $("updBtn").addEventListener("click",function(){
+      toast("Sprawdzam…");
+      var done=function(){ location.reload(); };
+      if(!("serviceWorker" in navigator)) return done();
+      navigator.serviceWorker.getRegistrations().then(function(rs){
+        return Promise.all(rs.map(function(r){ return r.unregister(); }));
+      }).then(function(){ return window.caches ? caches.keys().then(function(ks){ return Promise.all(ks.map(function(k){ return caches.delete(k); })); }) : null; })
+        .then(done, done);
+    });
+  })();
+
   // ---------- wklejanie linku z zadaniami ----------
   $("pasteLink").addEventListener("click",function(){ var b=$("pasteBox"); b.style.display=b.style.display==="none"?"block":"none"; });
   $("pasteOk").addEventListener("click",function(){
@@ -1471,7 +1489,7 @@
     $("installTxt").textContent="W Safari kliknij Udostępnij (kwadrat ze strzałką) → „Do ekranu początkowego” → Dodaj.";
     $("installYes").style.display="none"; $("install").style.display="block";
   }
-  if("serviceWorker" in navigator && (location.protocol==="https:"||location.hostname==="localhost")){ navigator.serviceWorker.register("sw.js").catch(function(){}); }
+  if("serviceWorker" in navigator && (location.protocol==="https:"||location.hostname==="localhost")){ navigator.serviceWorker.register("sw.js",{updateViaCache:"none"}).then(function(r){ try{ r.update(); }catch(e){} }).catch(function(){}); }
 
   // ---------- język nazw zadań ----------
   function paintLang(){ Array.prototype.forEach.call($("lang").children,function(b){ b.classList.toggle("on", b.getAttribute("data-l")===LANG); }); }
