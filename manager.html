@@ -897,6 +897,15 @@
   .toast.show{opacity:1}
   .lb{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;align-items:center;justify-content:center;z-index:40}
   .lb.open{display:flex}.lb img{max-width:96vw;max-height:90vh;border-radius:8px}
+  .tabs{display:flex;gap:6px;max-width:1100px;margin:10px auto 0;padding:0 12px;flex-wrap:wrap}
+  .tabs button{border:0;background:#fff;font:inherit;font-weight:700;font-size:14px;padding:9px 14px;border-radius:10px;cursor:pointer;color:var(--muted);box-shadow:0 0 0 1px var(--line)}
+  .tabs button.on{background:var(--navy);color:#fff;box-shadow:none}
+  .tab{display:none}.tab.on{display:block}
+  .chart{width:100%;height:200px}
+  .flag{display:inline-block;font-size:11.5px;font-weight:700;border-radius:6px;padding:2px 7px;margin-left:4px}
+  .flag.stop{background:var(--badbg);color:var(--bad)}.flag.slow{background:var(--warnbg);color:var(--warn)}.flag.done{background:var(--okbg);color:var(--ok)}
+  .bar{height:8px;border-radius:4px;background:var(--chip);overflow:hidden;min-width:80px}
+  .bar i{display:block;height:100%;background:var(--sea)}
   .seg{display:inline-flex;background:var(--chip);border-radius:9px;padding:3px}
   .seg button{border:0;background:none;font:inherit;font-size:13px;font-weight:700;padding:6px 10px;border-radius:7px;cursor:pointer;color:var(--muted)}
   .seg button.on{background:#fff;color:var(--navy);box-shadow:0 1px 2px rgba(0,0,0,.1)}
@@ -909,7 +918,14 @@
   <select id="rot" title="Rotacja na miejscu"><option value="A">Rotacja A</option><option value="B">Rotacja B</option></select>
 </div></header>
 
+<nav class="tabs" id="tabs">
+  <button data-t="day" class="on" type="button">Dzień</button>
+  <button data-t="hist" type="button">Historia</button>
+  <button data-t="tasks" type="button">Postęp zadań</button>
+  <button data-t="backup" type="button">Kopia</button>
+</nav>
 <main>
+<div class="tab on" id="tab-day">
   <section class="card">
     <h2>Wklej raporty z WhatsAppa <span class="muted" style="text-transform:none;letter-spacing:0;font-weight:400">można kilka naraz</span></h2>
     <textarea id="paste" placeholder="Skopiuj wiadomość od Team Leadera (od #SEAVIA-LOG do #END) i wklej tutaj"></textarea>
@@ -939,6 +955,24 @@
   </section>
 
   <section class="card">
+    <h2>Materiały, postoje, nieobecni</h2>
+    <div class="two">
+      <div><table id="matTbl"></table></div>
+      <div><table id="stopTbl"></table><div style="height:10px"></div><table id="absTbl"></table></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Raport dla klienta (PDF)</h2>
+    <div class="muted" style="margin-bottom:8px">Daily Progress Report po angielsku dla CS Accommodation z wybranego dnia. Otworzy się okno druku – wybierz „Zapisz jako PDF”.</div>
+    <div class="row">
+      <label class="row" style="gap:6px"><input type="checkbox" id="pdfOk" checked> tylko zatwierdzone raporty</label>
+      <label class="row" style="gap:6px"><input type="checkbox" id="pdfPh" checked> ze zdjęciami</label>
+      <button class="btn p" id="pdfBtn" type="button">Utwórz PDF</button>
+    </div>
+  </section>
+
+  <section class="card">
     <h2>Do Excela</h2>
     <div class="muted" style="margin-bottom:8px">Kopiuje zatwierdzone raporty z wybranego dnia w jednym bloku. Wklej w Excelu w Import!A1 i kliknij „Importuj raport”.</div>
     <div class="row">
@@ -960,6 +994,43 @@
   </section>
 
   <div style="text-align:center" class="muted">Dane są zapisane tylko na tym urządzeniu. <button class="btn sm g" id="delDay" type="button">Usuń raporty z tego dnia</button></div>
+</div>
+
+<div class="tab" id="tab-hist">
+  <section class="card">
+    <h2>Zakres</h2>
+    <div class="row"><span class="muted">od</span><input type="date" id="hFrom" style="width:auto"><span class="muted">do</span><input type="date" id="hTo" style="width:auto">
+      <button class="btn sm g" data-r="7" type="button">7 dni</button><button class="btn sm g" data-r="14" type="button">14 dni</button><button class="btn sm g" data-r="31" type="button">31 dni</button></div>
+  </section>
+  <section class="card"><h2>Roboczogodziny dziennie</h2><div class="kpis" id="hKpis"></div><svg class="chart" id="hChart" style="margin-top:10px"></svg></section>
+  <section class="card"><div class="two"><div><h2>Per projekt</h2><table id="hProj"></table></div><div><h2>Postoje</h2><table id="hStop"></table></div></div></section>
+  <section class="card"><h2>Per osoba</h2><table id="hPers"></table></section>
+</div>
+
+<div class="tab" id="tab-tasks">
+  <section class="card">
+    <h2>Postęp zadań <span class="muted" style="text-transform:none;letter-spacing:0;font-weight:400">ze wszystkich wklejonych raportów</span></h2>
+    <div class="muted" style="margin-bottom:8px"><span class="flag stop">stoi</span> w toku, ale brak godzin od 3+ dni · <span class="flag slow">bez postępu</span> % nie zmienia się w 3 ostatnich raportach</div>
+    <table id="tTbl"></table>
+  </section>
+  <section class="card">
+    <h2>Materiały do zamówienia <span class="muted" style="text-transform:none;letter-spacing:0;font-weight:400">ostatnie 14 dni</span></h2>
+    <table id="tMat"></table>
+  </section>
+</div>
+
+<div class="tab" id="tab-backup">
+  <section class="card">
+    <h2>Kopia danych panelu</h2>
+    <div class="muted" style="margin-bottom:10px">Raporty, zatwierdzenia i zdjęcia są tylko na tym urządzeniu. Zrób kopię (np. raz w tygodniu) i wczytaj ją na innym komputerze/telefonie, żeby przenieść dane. Wczytanie dopisuje dane – niczego nie kasuje.</div>
+    <div class="row">
+      <button class="btn p" id="bkExp" type="button">Pobierz kopię</button>
+      <label class="btn g" for="bkIn" style="display:inline-block">Wczytaj kopię</label>
+      <input type="file" id="bkIn" accept=".json,application/json" style="display:none">
+      <span class="muted" id="bkInfo"></span>
+    </div>
+  </section>
+</div>
 </main>
 <div class="lb" id="lb"><img id="lbImg" alt="zdjęcie"></div>
 <div class="toast" id="toast"></div>
@@ -1000,27 +1071,37 @@
   // ---------- parsing ----------
   function parseBlock(txt){
     var lines=txt.split(/\r?\n/).map(function(l){return l.trim();}).filter(Boolean);
-    var head=null, rows=[];
+    var head=null, rows=[], extra={mat:[],stop:[],abs:{}};
     lines.forEach(function(l){
       if(/^#SEAVIA-LOG/.test(l)){ var f=l.split(";"); head={who:f[2]||"",date:f[3]||""}; return; }
+      if(/^#SL2/.test(l)){ var f2=l.split(";"); head={who:f2[1]||"",date:f2[2]||""}; return; }
+      if(/^#MAT;/.test(l)){ var m1=l.split(";"); extra.mat.push({task:(m1[1]||"").toUpperCase(),txt:m1.slice(2).join(";")}); return; }
+      if(/^#STOP;/.test(l)){ var s1=l.split(";"); extra.stop.push({task:(s1[1]||"").toUpperCase(),h:parseFloat(s1[2])||0,n:parseInt(s1[3])||0,why:s1[4]||""}); return; }
+      if(/^#ABS;/.test(l)){ var a1=l.split(";"); if(a1[1]) extra.abs[a1[1]]=a1[2]||"nieobecny"; return; }
       if(l.charAt(0)==="#") return;
       var f=l.split(";"); if(f.length<4) return;
+      if((f[0]==="W"||f[0]==="T") && head){
+        var hh=parseFloat(String(f[2]).replace(",","."));
+        if(hh>0) (f[3]||"").split(",").forEach(function(n){ n=n.trim(); if(!n) return;
+          rows.push({date:head.date,emp:n,task:(f[1]||"").toUpperCase(),h:hh,act:f[0]==="T"?"Toolbox talk":"",det:f[4]||"",notes:f[5]||"",status:f[6]||"",pct:f[7]||"",proj:f[8]||""}); });
+        return;
+      }
       var h=parseFloat(String(f[3]).replace(",",".")); if(!(h>0)) return;
       rows.push({date:f[0],emp:f[1],task:(f[2]||"").toUpperCase(),h:h,act:f[4]||"",det:f[5]||"",notes:f[6]||"",status:f[7]||"",pct:f[8]||"",proj:f[9]||""});
     });
     if(!rows.length) return null;
     var who=head&&head.who || "", date=head&&head.date || rows[0].date;
-    return {who:who,date:date,rows:rows};
+    return {who:who,date:date,rows:rows,extra:extra};
   }
   $("addRep").addEventListener("click",function(){
     var txt=$("paste").value; if(!txt.trim()) return;
-    var blocks=txt.split(/(?=#SEAVIA-LOG)/).filter(function(b){ return b.trim(); });
+    var blocks=txt.split(/(?=#SEAVIA-LOG|#SL2)/).filter(function(b){ return b.trim(); });
     var added=0, dup=0, bad=0, lastDate="";
     blocks.forEach(function(b){
       var r=parseBlock(b); if(!r){ bad++; return; }
       var id=hash(r.date+"|"+r.who+"|"+r.rows.map(function(x){return [x.emp,x.task,x.h,x.act].join(",");}).join("|"));
       if(st.reports[id]){ dup++; return; }
-      st.reports[id]={id:id,who:r.who,date:r.date,group:groupOf(r.who),rows:r.rows,status:"new",comment:"",at:new Date().toISOString()};
+      st.reports[id]={id:id,who:r.who,date:r.date,group:groupOf(r.who),rows:r.rows,mat:r.extra.mat,stop:r.extra.stop,abs:r.extra.abs,status:"new",comment:"",at:new Date().toISOString()};
       added++; lastDate=r.date;
     });
     save(); $("paste").value="";
@@ -1036,8 +1117,11 @@
   function warnings(rep, allDay){
     var w=[], m=perPerson(rep);
     var members=(GROUPS[rep.group]||[]).map(function(p){return p.n;});
-    var miss=members.filter(function(n){ return !m[n]; });
-    if(miss.length) w.push("Brak godzin: "+miss.join(", "));
+    var ab=rep.abs||{};
+    var miss=members.filter(function(n){ return !m[n] && !ab[n]; });
+    if(miss.length) w.push("Brak godzin (bez podanego powodu): "+miss.join(", "));
+    var abl=Object.keys(ab); if(abl.length) w.push("Nieobecni: "+abl.map(function(n){return n+" ("+ab[n]+")";}).join(", "));
+    (rep.stop||[]).forEach(function(x){ w.push("Postój "+x.task+": "+fmtH(x.h)+" h × "+x.n+" os. – "+x.why); });
     var vals={}; Object.keys(m).forEach(function(n){ var k=fmtH(m[n]); (vals[k]=vals[k]||[]).push(n); });
     var ks=Object.keys(vals).sort(function(a,b){return vals[b].length-vals[a].length;});
     if(ks.length>1) w.push("Różne godziny – większość "+ks[0]+" h, inni: "+ks.slice(1).map(function(k){return vals[k].join(", ")+" "+k+" h";}).join("; "));
@@ -1090,7 +1174,19 @@
     var used={}; reps.forEach(function(r){ r.rows.forEach(function(x){ used[x.task]=1; }); });
     Object.keys(used).sort().forEach(function(id){ ps.appendChild(el("option",{value:id},id+" · "+tName(id))); });
     ps.value=cur;
-    renderPhotos();
+    renderPhotos(); renderDayExtras(reps);
+    if(curTab==="hist") renderHist(); if(curTab==="tasks") renderTasks();
+  }
+  function renderDayExtras(reps){
+    var mt=$("matTbl"); mt.innerHTML=""; var h=el("tr"); h.appendChild(el("th",null,"Materiały do zamówienia")); h.appendChild(el("th",null,"Team")); mt.appendChild(h);
+    var any=false; reps.forEach(function(r){ (r.mat||[]).forEach(function(x){ any=true; var tr=el("tr"); var td=el("td"); td.appendChild(el("b",null,x.task+" ")); td.appendChild(document.createTextNode(x.txt)); tr.appendChild(td); tr.appendChild(el("td",null,r.group||r.who)); mt.appendChild(tr); }); });
+    if(!any){ var e1=el("tr"); e1.appendChild(el("td",{"class":"muted",colspan:"2"},"Brak")); mt.appendChild(e1); }
+    var stt=$("stopTbl"); stt.innerHTML=""; h=el("tr"); ["Postoje","Roboczogodziny"].forEach(function(x,i){ h.appendChild(el("th",i?{style:"text-align:right"}:null,x)); }); stt.appendChild(h);
+    any=false; reps.forEach(function(r){ (r.stop||[]).forEach(function(x){ any=true; var tr=el("tr"); tr.appendChild(el("td",null,x.task+" · "+x.why+" ("+(r.group||r.who)+")")); tr.appendChild(el("td",{"class":"n"},fmtH(x.h*x.n)+" h")); stt.appendChild(tr); }); });
+    if(!any){ var e2=el("tr"); e2.appendChild(el("td",{"class":"muted",colspan:"2"},"Brak")); stt.appendChild(e2); }
+    var at=$("absTbl"); at.innerHTML=""; h=el("tr"); h.appendChild(el("th",null,"Nieobecni")); h.appendChild(el("th",null,"Powód")); at.appendChild(h);
+    any=false; reps.forEach(function(r){ Object.keys(r.abs||{}).forEach(function(n){ any=true; var tr=el("tr"); tr.appendChild(el("td",null,n)); tr.appendChild(el("td",null,r.abs[n])); at.appendChild(tr); }); });
+    if(!any){ var e3=el("tr"); e3.appendChild(el("td",{"class":"muted",colspan:"2"},"Brak")); at.appendChild(e3); }
   }
   function tableKV(t,label,obj){
     t.innerHTML=""; var tr=el("tr"); tr.appendChild(el("th",null,label)); tr.appendChild(el("th",{style:"text-align:right"},"Godziny")); t.appendChild(tr);
@@ -1213,6 +1309,169 @@
       photoThumbs(day,t,d); box.appendChild(d);
     });
   }
+
+  // ---------- zakładki ----------
+  var curTab="day";
+  Array.prototype.forEach.call($("tabs").children,function(b){ b.addEventListener("click",function(){
+    curTab=b.getAttribute("data-t");
+    Array.prototype.forEach.call($("tabs").children,function(x){ x.classList.toggle("on",x===b); });
+    ["day","hist","tasks","backup"].forEach(function(t){ $("tab-"+t).classList.toggle("on",t===curTab); });
+    render(); window.scrollTo(0,0);
+  }); });
+  function allReps(){ return Object.keys(st.reports).map(function(k){return st.reports[k];}); }
+  function addDays(iso,n){ var d=new Date(iso+"T12:00:00"); d.setDate(d.getDate()+n); return d.toISOString().slice(0,10); }
+  function ddmm(iso){ var p=iso.split("-"); return p[2]+"."+p[1]; }
+
+  // ---------- historia ----------
+  function setRange(n){ $("hTo").value=$("day").value||today(); $("hFrom").value=addDays($("hTo").value,-(n-1)); renderHist(); }
+  Array.prototype.forEach.call(document.querySelectorAll("#tab-hist [data-r]"),function(b){ b.addEventListener("click",function(){ setRange(parseInt(b.getAttribute("data-r"))); }); });
+  $("hFrom").addEventListener("change",renderHist); $("hTo").addEventListener("change",renderHist);
+  function renderHist(){
+    if(!$("hTo").value){ $("hTo").value=$("day").value||today(); $("hFrom").value=addDays($("hTo").value,-13); }
+    var from=$("hFrom").value, to=$("hTo").value, days=[];
+    for(var d=from; d<=to && days.length<120; d=addDays(d,1)) days.push(d);
+    var reps=allReps().filter(function(r){ return r.date>=from && r.date<=to; });
+    var perDay={}, proj={}, pers={}, stop={}, tot=0, tb=0;
+    days.forEach(function(d){ perDay[d]=0; });
+    reps.forEach(function(r){
+      r.rows.forEach(function(x){ perDay[r.date]=(perDay[r.date]||0)+x.h; tot+=x.h; if(/toolbox/i.test(x.act)) tb+=x.h;
+        var p=projOf(x); proj[p]=(proj[p]||0)+x.h;
+        var q=pers[x.emp]=pers[x.emp]||{h:0,days:{}}; q.h+=x.h; q.days[r.date]=1; });
+      (r.stop||[]).forEach(function(x){ stop[x.why]=(stop[x.why]||0)+x.h*x.n; });
+    });
+    var worked=days.filter(function(d){return perDay[d]>0;}).length;
+    var stopTot=Object.keys(stop).reduce(function(a,k){return a+stop[k];},0);
+    var k=$("hKpis"); k.innerHTML="";
+    [["Roboczogodziny",fmtH(tot)],["Dni z raportami",worked],["Średnio / dzień",fmtH(worked?tot/worked:0)],["Osoby",Object.keys(pers).length],["Toolbox h",fmtH(tb)],["Postoje h",fmtH(stopTot)]]
+      .forEach(function(a){ var e=el("div",{"class":"kpi"}); e.appendChild(el("span",null,a[0])); e.appendChild(el("b",null,String(a[1]))); k.appendChild(e); });
+    // wykres
+    var svg=$("hChart"), W=svg.clientWidth||900, H=200, pad=28, max=Math.max.apply(null,days.map(function(d){return perDay[d];}).concat([1]));
+    var bw=(W-pad*2)/days.length, out='<line x1="'+pad+'" y1="'+(H-pad)+'" x2="'+(W-pad)+'" y2="'+(H-pad)+'" stroke="#dfe5ec"/>';
+    days.forEach(function(d,i){
+      var v=perDay[d], h=(H-pad*2)*v/max, x=pad+i*bw+bw*0.15, y=H-pad-h;
+      out+='<rect x="'+x.toFixed(1)+'" y="'+y.toFixed(1)+'" width="'+(bw*0.7).toFixed(1)+'" height="'+h.toFixed(1)+'" rx="3" fill="#2a7ab0"><title>'+ddmm(d)+': '+fmtH(v)+' h</title></rect>';
+      if(v>0 && bw>26) out+='<text x="'+(x+bw*0.35).toFixed(1)+'" y="'+(y-4).toFixed(1)+'" font-size="10" text-anchor="middle" fill="#6a7686">'+Math.round(v)+'</text>';
+      if(bw>22 || i%Math.ceil(22/bw)===0) out+='<text x="'+(x+bw*0.35).toFixed(1)+'" y="'+(H-pad+14)+'" font-size="10" text-anchor="middle" fill="#6a7686">'+ddmm(d)+'</text>';
+    });
+    svg.setAttribute("viewBox","0 0 "+W+" "+H); svg.innerHTML=out;
+    tableKV($("hProj"),"Projekt",proj);
+    tableKV($("hStop"),"Powód",stop);
+    var t=$("hPers"); t.innerHTML=""; var h0=el("tr"); ["Osoba","Team","Dni","Godziny","Śr. / dzień"].forEach(function(x,i){ h0.appendChild(el("th",i>1?{style:"text-align:right"}:null,x)); }); t.appendChild(h0);
+    Object.keys(pers).sort().forEach(function(n){ var q=pers[n], dd=Object.keys(q.days).length, tr=el("tr");
+      tr.appendChild(el("td",null,n)); tr.appendChild(el("td",null,groupOf(n))); tr.appendChild(el("td",{"class":"n"},String(dd)));
+      tr.appendChild(el("td",{"class":"n"},fmtH(q.h)+" h")); var av=q.h/dd; tr.appendChild(el("td",{"class":"n"+(av>12?" hi":"")},fmtH(av)+" h")); t.appendChild(tr); });
+  }
+
+  // ---------- postęp zadań ----------
+  st.matDone=st.matDone||{};
+  function renderTasks(){
+    var reps=allReps().sort(function(a,b){ return a.date<b.date?-1:a.date>b.date?1:0; });
+    var T={}, ref=$("day").value||today();
+    reps.forEach(function(r){ r.rows.forEach(function(x){
+      var q=T[x.task]=T[x.task]||{h:0,last:"",status:"",pct:"",pctHist:[],days:{}};
+      q.h+=x.h; q.days[r.date]=1; if(r.date>q.last) q.last=r.date;
+      if(x.status){ q.status=x.status; }
+      if(x.pct!==""&&x.pct!=null){ if(q.pctHist.length===0 || q.pctHist[q.pctHist.length-1].d!==r.date) q.pctHist.push({d:r.date,p:parseFloat(x.pct)}); q.pct=parseFloat(x.pct); }
+    }); });
+    var ids=Object.keys(T); TASKS.forEach(function(t){ if(ids.indexOf(t.id)<0 && t.status!=="Done") ids.push(t.id); });
+    var tb=$("tTbl"); tb.innerHTML=""; var h=el("tr"); ["Zadanie","Projekt","Status / %","Godziny","Dni","Ostatnio"].forEach(function(x,i){ h.appendChild(el("th",(i===3||i===4)?{style:"text-align:right"}:null,x)); }); tb.appendChild(h);
+    ids.sort().forEach(function(id){
+      var q=T[id]||{h:0,last:"",status:"",pct:"",pctHist:[],days:{}}, t=task(id), st0=q.status||(t&&t.status)||"Open";
+      var pct = q.pct!=="" ? q.pct : (t&&t.pct!==""&&t&&t.pct!=null? parseFloat(t.pct) : "");
+      var tr=el("tr"), td=el("td"); td.appendChild(el("b",null,id+" ")); td.appendChild(document.createTextNode(tName(id)));
+      var since = q.last ? Math.round((new Date(ref)-new Date(q.last))/86400000) : null;
+      if(st0==="Done") td.appendChild(el("span",{"class":"flag done"},"zakończone"));
+      else if(st0==="In progress" && (since===null || since>=3)) td.appendChild(el("span",{"class":"flag stop"},"stoi"));
+      var ph=q.pctHist.slice(-3); if(st0!=="Done" && ph.length===3 && ph[0].p===ph[2].p) td.appendChild(el("span",{"class":"flag slow"},"bez postępu"));
+      tr.appendChild(td); tr.appendChild(el("td",null,tProj(id)||"–"));
+      var c=el("td"); c.appendChild(el("div",{"class":"muted"},st0+(pct!==""?" · "+pct+"%":"")));
+      if(pct!==""){ var b=el("div",{"class":"bar"}), i=el("i",{style:"width:"+Math.max(0,Math.min(100,pct))+"%"}); b.appendChild(i); c.appendChild(b); }
+      tr.appendChild(c);
+      tr.appendChild(el("td",{"class":"n"},fmtH(q.h)+" h")); tr.appendChild(el("td",{"class":"n"},String(Object.keys(q.days).length)));
+      tr.appendChild(el("td",null,q.last? ddmm(q.last)+(since>0?" ("+since+" dni temu)":" (dziś)") : "–"));
+      tb.appendChild(tr);
+    });
+    // materiały
+    var mt=$("tMat"); mt.innerHTML=""; h=el("tr"); ["Data","Zadanie","Materiał","Team","Zamówione"].forEach(function(x){ h.appendChild(el("th",null,x)); }); mt.appendChild(h);
+    var from=addDays(ref,-13), any=false;
+    reps.filter(function(r){ return r.date>=from && r.date<=ref; }).reverse().forEach(function(r){ (r.mat||[]).forEach(function(x,j){
+      any=true; var key=r.id+"#"+j, tr=el("tr");
+      tr.appendChild(el("td",null,ddmm(r.date))); tr.appendChild(el("td",null,x.task)); tr.appendChild(el("td",null,x.txt)); tr.appendChild(el("td",null,r.group||r.who));
+      var cb=el("input",{type:"checkbox"}); cb.checked=!!st.matDone[key]; cb.addEventListener("change",function(){ if(cb.checked) st.matDone[key]=1; else delete st.matDone[key]; save(); tr.style.opacity=cb.checked?.5:1; });
+      tr.style.opacity=cb.checked?.5:1; var tdc=el("td"); tdc.appendChild(cb); tr.appendChild(tdc); mt.appendChild(tr);
+    }); });
+    if(!any){ var e=el("tr"); e.appendChild(el("td",{"class":"muted",colspan:"5"},"Brak zgłoszonych materiałów.")); mt.appendChild(e); }
+  }
+
+  // ---------- PDF dla klienta ----------
+  function esc(x){ return String(x==null?"":x).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];}); }
+  $("pdfBtn").addEventListener("click",function(){
+    var day=$("day").value, reps=dayReports().filter(function(r){ return !$("pdfOk").checked || r.status==="ok"; });
+    if(!reps.length){ toast($("pdfOk").checked?"Brak zatwierdzonych raportów z tego dnia":"Brak raportów z tego dnia"); return; }
+    var w=window.open("","_blank"); if(!w){ toast("Zezwól na wyskakujące okna"); return; }
+    var T={}, order=[], ppl={}, tot=0;
+    reps.forEach(function(r){ r.rows.forEach(function(x){ if(/toolbox/i.test(x.act)) return;
+      if(!T[x.task]){ T[x.task]={crew:{},h:0,status:"",pct:"",proj:""}; order.push(x.task); }
+      var q=T[x.task]; q.crew[x.emp]=1; q.h+=x.h; if(x.status) q.status=x.status; if(x.pct!=="") q.pct=x.pct; if(x.proj) q.proj=x.proj; ppl[x.emp]=1; }); r.rows.forEach(function(x){ tot+=x.h; }); });
+    order.sort();
+    var stops=[]; reps.forEach(function(r){ (r.stop||[]).forEach(function(x){ stops.push(x); }); });
+    var rowsH=order.map(function(id){ var t=task(id)||{}, q=T[id];
+      return "<tr><td><b>"+esc(id)+"</b></td><td>"+esc(t.name||"")+"</td><td>"+esc([t.deck,t.loc].filter(Boolean).join(" / "))+"</td><td>"+esc(q.proj||t.proj||"")+"</td><td class=r>"+Object.keys(q.crew).length+"</td><td class=r>"+fmtH(q.h)+"</td><td>"+esc(q.status||t.status||"")+"</td><td class=r>"+(q.pct!==""?esc(q.pct)+"%":"")+"</td></tr>"; }).join("");
+    var html='<!DOCTYPE html><html><head><meta charset="utf-8"><title>Daily Progress Report '+day+'</title><style>'+
+      'body{font:12px/1.4 Arial,sans-serif;color:#1b2430;margin:24px}h1{font-size:20px;margin:0 0 4px;color:#0f2238}'+
+      '.meta{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid #c9d3df;margin:12px 0}.meta div{padding:6px 8px;border-right:1px solid #c9d3df}.meta div:last-child{border-right:0}.meta span{display:block;font-size:9px;color:#6a7686;text-transform:uppercase;letter-spacing:.5px}'+
+      'table{width:100%;border-collapse:collapse;margin:8px 0 14px}th{background:#0f2238;color:#fff;text-align:left;padding:6px;font-size:11px}td{padding:5px 6px;border-bottom:1px solid #dfe5ec;vertical-align:top}.r{text-align:right}'+
+      'h2{font-size:13px;color:#0f2238;margin:16px 0 4px;text-transform:uppercase;letter-spacing:.5px}.ph{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.ph figure{margin:0;break-inside:avoid}.ph img{width:100%;height:170px;object-fit:cover;border-radius:4px}.ph figcaption{font-size:10px;color:#6a7686}'+
+      '.tot td{font-weight:700;border-top:2px solid #0f2238}@media print{body{margin:10mm}}</style></head><body>'+
+      '<h1>Daily Progress Report</h1><div style="color:#6a7686">Marine refit works</div>'+
+      '<div class="meta"><div><span>Report date</span>'+esc(day.split("-").reverse().join("."))+'</div><div><span>Project / Unit</span>Noble Claus Bachmann</div><div><span>Contractor</span>Seavia Marine</div><div><span>Client</span>CS Accommodation</div></div>'+
+      '<div class="meta"><div><span>Personnel on site</span>'+Object.keys(ppl).length+'</div><div><span>Total man-hours</span>'+fmtH(tot)+'</div><div><span>Active tasks</span>'+order.length+'</div><div><span>Downtime (man-hours)</span>'+fmtH(stops.reduce(function(a,x){return a+x.h*x.n;},0))+'</div></div>'+
+      '<h2>Work progress</h2><table><tr><th>Task</th><th>Description</th><th>Location</th><th>Project</th><th class=r>Crew</th><th class=r>Man-h</th><th>Status</th><th class=r>Progress</th></tr>'+rowsH+
+      '<tr class="tot"><td colspan="4">Total (incl. toolbox talks)</td><td class=r>'+Object.keys(ppl).length+'</td><td class=r>'+fmtH(tot)+'</td><td colspan="2"></td></tr></table>'+
+      (stops.length? '<h2>Downtime</h2><table><tr><th>Task</th><th>Reason</th><th class=r>Hours</th><th class=r>Crew</th></tr>'+stops.map(function(x){ return "<tr><td>"+esc(x.task)+"</td><td>"+esc(STOP_EN[x.why]||x.why)+"</td><td class=r>"+fmtH(x.h)+"</td><td class=r>"+x.n+"</td></tr>"; }).join("")+'</table>' : '')+
+      '<div id="phs"></div><script>window.addEventListener("load",function(){setTimeout(function(){window.print();},400);});<\/script></body></html>';
+    w.document.open(); w.document.write(html); w.document.close();
+    if($("pdfPh").checked){
+      var ph=st.photos.filter(function(p){ return p.date===day && order.indexOf(p.task)>=0; });
+      if(ph.length){
+        Promise.all(ph.map(function(p){ return dbGet(p.id).then(function(b){ return b? toDataURL(b).then(function(u){ return {p:p,u:u}; }) : null; }); })).then(function(list){
+          var box=w.document.getElementById("phs"); if(!box) return;
+          box.innerHTML='<h2>Photos</h2><div class="ph">'+list.filter(Boolean).map(function(x){ return '<figure><img src="'+x.u+'"><figcaption>'+esc(x.p.task)+' – '+esc((task(x.p.task)||{}).name||"")+'</figcaption></figure>'; }).join("")+'</div>';
+        });
+      }
+    }
+  });
+  var STOP_EN={"Czekamy na permit":"Waiting for permit","Brak materiału":"Material shortage","Brak dostępu / teren zajęty":"No access / area occupied","Czekamy na inne branże":"Waiting for other trades","Alarm / ćwiczenia":"Alarm / drill","Inne":"Other"};
+  function toDataURL(b){ return new Promise(function(res){ var r=new FileReader(); r.onload=function(){res(r.result);}; r.onerror=function(){res("");}; r.readAsDataURL(b); }); }
+
+  // ---------- kopia ----------
+  $("bkExp").addEventListener("click",function(){
+    $("bkInfo").textContent="Przygotowuję…";
+    Promise.all(st.photos.map(function(p){ return dbGet(p.id).then(function(b){ return b? toDataURL(b).then(function(u){ return [p.id,u]; }) : null; }); })).then(function(list){
+      var data={app:"seavia-manager",v:1,at:new Date().toISOString(),state:st,photos:{}};
+      list.filter(Boolean).forEach(function(x){ data.photos[x[0]]=x[1]; });
+      var blob=new Blob([JSON.stringify(data)],{type:"application/json"}), a=el("a",{href:URL.createObjectURL(blob),download:"panel-np-kopia-"+today()+".json"});
+      document.body.appendChild(a); a.click(); a.remove();
+      $("bkInfo").textContent="Pobrano: "+Object.keys(st.reports).length+" raportów, "+list.filter(Boolean).length+" zdjęć.";
+    });
+  });
+  $("bkIn").addEventListener("change",function(){
+    var f=this.files&&this.files[0]; this.value=""; if(!f) return;
+    var r=new FileReader();
+    r.onload=function(){
+      var d; try{ d=JSON.parse(r.result); }catch(e){ toast("To nie jest plik kopii"); return; }
+      if(!d||d.app!=="seavia-manager"){ toast("To nie jest plik kopii panelu"); return; }
+      var s2=d.state||{}, nR=0, nP=0;
+      Object.keys(s2.reports||{}).forEach(function(k){ if(!st.reports[k]){ st.reports[k]=s2.reports[k]; nR++; } });
+      Object.keys(s2.matDone||{}).forEach(function(k){ st.matDone[k]=1; });
+      var have={}; st.photos.forEach(function(p){ have[p.id]=1; });
+      var jobs=(s2.photos||[]).filter(function(p){ return !have[p.id] && d.photos[p.id]; }).map(function(p){
+        return fetch(d.photos[p.id]).then(function(x){ return x.blob(); }).then(function(b){ st.photos.push(p); nP++; return dbPut(p.id,b); });
+      });
+      Promise.all(jobs).then(function(){ save(); render(); $("bkInfo").textContent="Wczytano: "+nR+" nowych raportów, "+nP+" zdjęć."; });
+    };
+    r.readAsText(f);
+  });
 
   // ---------- controls ----------
   $("day").value=st.day||today();

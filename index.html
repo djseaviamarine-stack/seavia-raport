@@ -932,6 +932,9 @@
   .tt.done .go{color:var(--ok);border-color:var(--ok)}
   .st{display:inline-block;font-size:11px;font-weight:700;border-radius:5px;padding:1px 6px;margin-left:4px;background:#fff3d6;color:#8a5a00}
   .st.ip{background:#e3f0ff;color:#1d5fa8}
+  .absrow{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid var(--line)}
+  .absrow:last-child{border-bottom:0}
+  .absrow select{width:auto;min-width:140px;padding:8px 30px 8px 10px;font-size:14px}
   .entry .thumbs{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
   .entry .thumbs img{width:44px;height:44px;object-fit:cover;border-radius:7px}
   .step{font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.6px;margin:14px 0 8px}
@@ -1043,6 +1046,28 @@
     <label for="notes">Uwagi / problemy</label>
     <input id="notes" placeholder="np. waiting for permit 1h">
 
+    <label for="mat">Materiały do zamówienia</label>
+    <input id="mat" placeholder="np. wełna 100 mm – 40 paczek, kołki 500 szt.">
+
+    <div class="row">
+      <div>
+        <label for="stopH">Postój (h na osobę)</label>
+        <input id="stopH" type="number" inputmode="decimal" step="0.5" min="0" max="24" placeholder="0">
+      </div>
+      <div>
+        <label for="stopR">Powód postoju</label>
+        <select id="stopR">
+          <option value="">—</option>
+          <option>Czekamy na permit</option>
+          <option>Brak materiału</option>
+          <option>Brak dostępu / teren zajęty</option>
+          <option>Czekamy na inne branże</option>
+          <option>Alarm / ćwiczenia</option>
+          <option>Inne</option>
+        </select>
+      </div>
+    </div>
+
     <div class="err" id="err"></div>
     <div style="height:12px"></div>
     <button class="btn primary" id="addBtn" type="button">Dodaj wpis</button>
@@ -1052,6 +1077,13 @@
   <section class="card">
     <h2>3 · Dzisiejsze wpisy</h2>
     <div id="entries"></div>
+    <button class="btn ghost" id="repeatBtn" type="button" style="display:none;margin-top:4px"></button>
+  </section>
+
+  <section class="card" id="absCard" style="display:none">
+    <h2>Nieobecni / bez godzin</h2>
+    <div class="taskinfo" style="margin:-4px 0 8px">Zaznacz powód, jeśli kogoś nie było w pracy – raport nie będzie wtedy o nich pytał.</div>
+    <div id="absList"></div>
   </section>
 
   <section class="card" id="sumCard" style="display:none">
@@ -1111,7 +1143,7 @@
   var TOOLBOX_H = 0.5;
   var QUICK_HOURS = [9.5, 7, 5, 4.5, 4, 2.5, 1];
 
-  var APP_VERSION = "24.11.2026 14:20";
+  var APP_VERSION = "24.11.2026 15:00";
   var DATA = JSON.parse(document.getElementById("app-data").textContent);
   var GROUPS = DATA.groups, TASKS = DATA.tasks;
   var PLAN_DATE = "";
@@ -1206,7 +1238,7 @@
   function guessGroup(name){ for(var g in GROUPS) for(var i=0;i<GROUPS[g].length;i++) if(GROUPS[g][i].n===name) return g; return ""; }
 
   rep.addEventListener("change", function(){ state.reporter=rep.value; var g=guessGroup(rep.value); if(g && g!==grp.value){ grp.value=g; state.group=g; selected=[]; renderEntries(); } save(); });
-  $("date").addEventListener("change", function(){ state.date=$("date").value; save(); });
+  $("date").addEventListener("change", function(){ state.date=$("date").value; save(); renderRepeat(); });
   grp.addEventListener("change", function(){ state.group=grp.value; selected=[]; renderEntries(); save(); });
 
   tsel.addEventListener("change", function(){
@@ -1336,7 +1368,7 @@
     if(editIdx<0) formPhotos.forEach(function(id){ if(!usedPhoto(id)) PH.del(id); });
     formPhotos=[]; renderFormPhotos();
     selected=[]; tsel.value=""; $("taskCustom").value=""; $("taskCustom").style.display="none";
-    $("hours").value=""; $("details").value=""; $("status").value=""; $("pct").value=""; $("notes").value="";
+    $("hours").value=""; $("details").value=""; $("status").value=""; $("pct").value=""; $("notes").value=""; $("mat").value=""; $("stopH").value=""; $("stopR").value="";
     $("err").textContent=""; editIdx=-1; $("addBtn").textContent="Dodaj wpis"; $("cancelBtn").style.display="none"; $("formTitle").textContent="2 · Dodaj wpis";
     renderTaskInfo(); renderPeople(); markQuick();
   }
@@ -1354,7 +1386,9 @@
     if(!(h>0 && h<=24)){ err.textContent="Wpisz godziny (0,5–24)."; $("hours").focus(); return; }
     if(pct!=="" && !(pct>=0 && pct<=100)){ err.textContent="% wykonania: 0–100."; return; }
     var e = { task:tid, people:selected.slice(), hours:h,
-              details:clean($("details").value), status:$("status").value, pct:pct, notes:clean($("notes").value), photos:formPhotos.slice() };
+              details:clean($("details").value), status:$("status").value, pct:pct, notes:clean($("notes").value), photos:formPhotos.slice(),
+              mat:clean($("mat").value), stopH:parseFloat(String($("stopH").value).replace(",","."))||0, stopR:$("stopR").value };
+    if(e.stopH>0 && !e.stopR){ err.textContent="Podaj powód postoju."; return; }
     if(editIdx>=0){ (state.entries[editIdx].photos||[]).forEach(function(id){ if(e.photos.indexOf(id)<0) PH.del(id); }); }
     if(editIdx>=0){ state.entries[editIdx]=e; toast("Zapisano zmiany"); }
     else { state.entries.push(e); toast("Dodano wpis"); }
@@ -1368,7 +1402,7 @@
     else { tsel.value="__other"; $("taskCustom").style.display="block"; $("taskCustom").value=e.task; }
     formPhotos=(e.photos||[]).slice(); renderFormPhotos();
     selected=e.people.slice(); $("hours").value=e.hours;
-    $("details").value=e.details; $("status").value=e.status||""; $("pct").value=e.pct===""?"":e.pct; $("notes").value=e.notes||"";
+    $("details").value=e.details; $("status").value=e.status||""; $("pct").value=e.pct===""?"":e.pct; $("notes").value=e.notes||""; $("mat").value=e.mat||""; $("stopH").value=e.stopH||""; $("stopR").value=e.stopR||"";
     $("addBtn").textContent="Zapisz zmiany"; $("cancelBtn").style.display="block"; $("formTitle").textContent="2 · Edytuj wpis";
     renderTaskInfo(); renderPeople(); markQuick();
     window.scrollTo({top: $("form").offsetTop-70, behavior:"smooth"});
@@ -1385,7 +1419,7 @@
       top.appendChild(left);
       top.appendChild(el("div",{"class":"h"}, e.people.length+" × "+fmtH(e.hours)+" h"));
       d.appendChild(top);
-      var meta=[]; if(e.status) meta.push(e.status); if(e.pct!=="") meta.push(e.pct+"%"); if(e.details) meta.push(e.details); if(e.notes) meta.push("Uwagi: "+e.notes);
+      var meta=[]; if(e.status) meta.push(e.status); if(e.pct!=="") meta.push(e.pct+"%"); if(e.details) meta.push(e.details); if(e.notes) meta.push("Uwagi: "+e.notes); if(e.mat) meta.push("Materiały: "+e.mat); if(e.stopH) meta.push("Postój: "+fmtH(e.stopH)+" h ("+e.stopR+")");
       if(meta.length) d.appendChild(el("div",{"class":"meta"},meta.join(" · ")));
       d.appendChild(el("div",{"class":"ppl"},e.people.join(", ")));
       if(e.photos && e.photos.length){
@@ -1411,8 +1445,40 @@
       d.appendChild(el("div",{"class":"meta"},"Żeby wpisać inaczej – dodaj Team Leadera ręcznie albo wyłącz to w kroku 1."));
       box.appendChild(d);
     }
-    renderSummary(); renderToday(); renderPeople();
+    renderSummary(); renderToday(); renderPeople(); renderAbsent(); renderRepeat();
   }
+  // ---------- nieobecni ----------
+  state.absent = state.absent || {};
+  var ABS_REASONS=["Choroba","Wolne / urlop","Podróż","Inne"];
+  function absentNow(){
+    var m=perPerson();
+    return Object.keys(state.absent).filter(function(n){ return state.absent[n] && !m[n] && (GROUPS[grp.value]||[]).some(function(p){return p.n===n;}); });
+  }
+  function renderAbsent(){
+    var m=perPerson(), box=$("absList"); box.innerHTML="";
+    var list=crew().filter(function(p){ return !m[p.n]; });
+    $("absCard").style.display = (state.entries.length && list.length) ? "block" : "none";
+    list.forEach(function(p){
+      var r=el("div",{"class":"absrow"}); r.appendChild(el("span",null,p.n));
+      var sel=el("select"); sel.appendChild(el("option",{value:""},"był(a) w pracy?"));
+      ABS_REASONS.forEach(function(x){ sel.appendChild(el("option",{value:x},x)); });
+      sel.value=state.absent[p.n]||"";
+      sel.addEventListener("change",function(){ if(sel.value) state.absent[p.n]=sel.value; else delete state.absent[p.n]; save(); });
+      r.appendChild(sel); box.appendChild(r);
+    });
+  }
+  // ---------- powtórz poprzedni dzień ----------
+  function renderRepeat(){
+    var b=$("repeatBtn"), pv=state.prev;
+    if(!state.entries.length && pv && pv.entries && pv.entries.length && pv.date!==$("date").value){
+      b.style.display="block"; b.textContent="↻ Powtórz wpisy z "+pv.date.split("-").reverse().slice(0,2).join(".")+" ("+plWpis(pv.entries.length)+")";
+    } else b.style.display="none";
+  }
+  $("repeatBtn").addEventListener("click",function(){
+    var pv=state.prev; if(!pv) return;
+    state.entries=pv.entries.map(function(e){ return {task:e.task,people:e.people.slice(),hours:e.hours,details:e.details||"",status:"",pct:"",notes:"",photos:[],mat:"",stopH:0,stopR:""}; });
+    save(); renderEntries(); toast("Skopiowano – popraw godziny i ludzi");
+  });
   function plOs(n){ return n+(n===1?" osoba":(n%10>=2&&n%10<=4&&(n%100<10||n%100>=20)?" osoby":" osób")); }
   function plWpis(n){ return n+(n===1?" wpis":(n%10>=2&&n%10<=4&&(n%100<10||n%100>=20)?" wpisy":" wpisów")); }
   function confirmDel(i){ return window.confirm ? window.confirm("Usunąć wpis "+state.entries[i].task+"?") : true; }
@@ -1471,6 +1537,11 @@
       if(th>0) lines.push([date,A.name,TL_TASK,Math.round(th*100)/100,"",TL_DETAILS,"","","",A.proj].join(";"));
       if(tbd.checked) lines.push([date,A.name,TL_TASK,TOOLBOX_H,"Toolbox talk","","","","",A.proj].join(";"));
     }
+    state.entries.forEach(function(e){
+      if(e.mat) lines.push("#MAT;"+e.task+";"+clean(e.mat));
+      if(e.stopH>0) lines.push("#STOP;"+e.task+";"+e.stopH+";"+e.people.length+";"+clean(e.stopR));
+    });
+    absentNow().forEach(function(n){ lines.push("#ABS;"+n+";"+state.absent[n]); });
     lines.push("#END");
     return lines.join("\n");
   }
@@ -1478,6 +1549,7 @@
   $("sendBtn").addEventListener("click",function(){
     if(!rep.value){ toast("Wybierz, kto raportuje"); rep.focus(); return; }
     var txt=buildReport(); $("preview").textContent=txt;
+    state.prev={date:$("date").value, entries:state.entries.map(function(e){ return {task:e.task,people:e.people.slice(),hours:e.hours,details:e.details}; })}; save();
     var m=perPerson(), tot=0; Object.keys(m).forEach(function(k){tot+=m[k];});
     $("sheetInfo").textContent=$("date").value+" · "+plWpis(state.entries.length)+" · "+plOs(Object.keys(m).length)+" · "+fmtH(tot)+" h. Wyślij całą wiadomość bez zmian.";
     $("shareBtn").style.display = navigator.share ? "block" : "none";
@@ -1494,8 +1566,8 @@
   function checks(){
     var out=[], m=perPerson();
     var members=(GROUPS[grp.value]||[]).map(function(p){ return p.n; });
-    var missing=members.filter(function(n){ return !m[n]; });
-    if(missing.length) out.push("• Brak godzin dla "+missing.length+" os. z "+grp.value+": "+missing.join(", ")+". Nie było ich dziś w pracy?");
+    var missing=members.filter(function(n){ return !m[n] && !(state.absent||{})[n]; });
+    if(missing.length) out.push("• Brak godzin dla "+missing.length+" os. z "+grp.value+": "+missing.join(", ")+". Jeśli ich nie było – zaznacz powód w „Nieobecni”.");
     var vals={}; Object.keys(m).forEach(function(n){ var k=fmtH(m[n]); (vals[k]=vals[k]||[]).push(n); });
     var keys=Object.keys(vals);
     if(keys.length>1){
@@ -1582,7 +1654,7 @@
     if(state.entries.length===0) return;
     if(window.confirm && !window.confirm("Usunąć wszystkie wpisy? Zrób to dopiero po wysłaniu raportu.")) return;
     state.entries.forEach(function(e){ (e.photos||[]).forEach(PH.del); });
-    state.entries=[]; state.date=today(); $("date").value=state.date; save(); resetForm(); renderEntries();
+    state.entries=[]; state.absent={}; state.date=today(); $("date").value=state.date; save(); resetForm(); renderEntries();
   });
 
   // ---------- wersja / aktualizacja ----------
